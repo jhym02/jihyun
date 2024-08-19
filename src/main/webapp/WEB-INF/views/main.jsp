@@ -247,7 +247,7 @@ table, td {
 
 
 			<a href="#">내정보</a>
-
+			<p>test</p>
 
 
 			<c:choose>
