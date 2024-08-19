@@ -244,6 +244,8 @@ table, td {
 			<a href="#">관련소식</a>
 		</div>
 		<div class="sv">
+
+
 			<a href="#">내정보</a>
 			<p>test</p>
 
