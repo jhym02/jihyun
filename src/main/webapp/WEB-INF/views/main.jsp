@@ -245,7 +245,7 @@ table, td {
 		</div>
 		<div class="sv">
 			<a href="#">내정보</a>
-			
+			<p>test</p>
 
 
 			<c:choose>
