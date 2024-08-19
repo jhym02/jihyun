@@ -244,7 +244,7 @@ table, td {
 			<a href="#">관련소식</a>
 		</div>
 		<div class="sv">
-			<a href="#">관련소식</a>
+			<a href="#">테스트용</a>
 			
 
 
