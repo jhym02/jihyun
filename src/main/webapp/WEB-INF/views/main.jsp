@@ -245,9 +245,8 @@ table, td {
 		</div>
 		<div class="sv">
 
-			<a href="#">내정보</a>
 
-	
+			<a href="#">내정보</a>
 
 
 
