@@ -286,7 +286,7 @@ table, td {
 											<div class="login-message">모든 서비스를 더욱 편리하게 이용하실 수 있습니다</div>
 											<form action="Real_Login" method="post">
 												<label for="username"></label> <input type="text"
-													id="username" name="memId" required`
+													id="username" name="memId" required
 													placeholder="아이디를 입력해주세요"> <label for="password"></label>
 												<input type="password" id="password" name="memPw" required
 													required placeholder="비밀번호를 입력해주세요"> <input
