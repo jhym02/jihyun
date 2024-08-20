@@ -77,13 +77,24 @@ public class MemberController {
 		
 		return "redirect:main";
 	}
-	
+	// 로그인 후 페이지
+		@RequestMapping("/loginon")
+		public String gologinon() {
+			return "loginon";
+		}
+		
+		
+		// 발전량데이터테이블
+		@RequestMapping("/dataTable")
+		public String goDataTable() {
+			return "dataTable";
+		}
 	// 마이페이지로 이동
 	@RequestMapping("/Go_Mypage")
 	public String Go_Mypage() {
 
 		return "myPage";
-	}
+	} 
 }
 
 

@@ -18,7 +18,7 @@
             <div class="buttons">
                 <div class="button-container">
                     <div class="button-text">내 발전소 현황</div>
-                    <a href="#">
+                    <a href="loginon">
                         <button type="button" class="btn_direct">바로가기</button>
                     </a>
                 </div>
