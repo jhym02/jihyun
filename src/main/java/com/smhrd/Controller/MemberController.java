@@ -62,7 +62,6 @@ public class MemberController {
 			return "Login";
 		}
 	
-
 	// 로그아웃
 	@RequestMapping("/Logout")
 	public String Logout(HttpSession session) {
@@ -70,12 +69,20 @@ public class MemberController {
 		return "redirect:main";
 	}
 	
+	// 카카오 로그인
 	@RequestMapping("/KakaoLogSuc")
 	public String KakaoLogSuc(String nickname,HttpSession session) {
 		
 		session.setAttribute("user_nick",nickname);
 		
 		return "redirect:main";
+	}
+	
+	// 마이페이지로 이동
+	@RequestMapping("/Go_Mypage")
+	public String Go_Mypage() {
+
+		return "myPage";
 	}
 }
 
