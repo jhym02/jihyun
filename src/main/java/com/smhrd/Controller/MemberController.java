@@ -54,6 +54,14 @@ public class MemberController {
 
 		return "redirect:main";
 	}
+	
+	// 로그인 화면 이동
+		@RequestMapping("/Go_Login")
+		public String Go_Login() {
+
+			return "Login";
+		}
+	
 
 	// 로그아웃
 	@RequestMapping("/Logout")
