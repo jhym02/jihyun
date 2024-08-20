@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -99,12 +100,12 @@ a {
 				<c:when test="${!empty user_nick}">
 					<!-- 카카오 로그인했을 경우 -->
 					<div class="dropdown-content">
-						<i class="bi bi-person"></i> <span>${user_nick}</span>
+						<i class="bi bi-person"></i> <span>${user_nick}님</span>
 						<a href="MyPage">마이페이지</a>
 						<a href="Logout">로그아웃</a>
 					</div>
 				</c:when>
-				<c:when test="${!empty user.memId}">
+				<c:when test="${!empty user}">
 					<!-- 일반 로그인했을 경우 -->
 					<div class="dropdown-content">
 						<i class="bi bi-person"></i> <span>${user.memName}님</span>
