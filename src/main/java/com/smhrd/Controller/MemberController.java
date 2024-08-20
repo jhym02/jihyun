@@ -77,6 +77,13 @@ public class MemberController {
 		
 		return "redirect:main";
 	}
+	
+	// 로그인 화면 이동
+			@RequestMapping("/loginon")
+			public String goLoginon() {
+
+				return "loginon";
+			}
 }
 
 
