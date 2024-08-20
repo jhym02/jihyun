@@ -1,0 +1,228 @@
+       body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 30px;
+            background-color: #fff;
+            border-bottom: 1px solid #eaeaea;
+        }
+
+        .sv {
+            display: flex;
+            justify-content: flex-end;
+            gap: 30px;
+            margin-right: 50px;
+            text-decoration: none;
+            font-size: 22px;
+            font-weight: bold;
+            background-color: white; /* 기본 배경색을 흰색으로 설정 */
+            color: black; /* 기본 글씨 색상을 검은색으로 설정 */
+        }
+
+        .sv a {
+            color: inherit; /* 링크의 기본 색상 상속 */
+            text-decoration: none; /* 링크의 기본 밑줄 제거 */
+        }
+
+        .sv:hover {
+            background-color: #3498db; /* 마우스를 올렸을 때 배경색을 파란색으로 변경 */
+        }
+
+        .sv:hover a {
+            color: white; /* hover 상태에서 텍스트 색상 흰색으로 변경 */
+        }
+
+        #auth {
+            display: flex;
+            justify-content: flex-end;
+            gap: 30px;
+            margin-right: 50px;
+            text-decoration: none;
+            color: #000;
+        }
+
+        #auth a {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        a {
+            text-decoration-line: none;
+            color: black;
+        }
+
+        p {
+            color: rgb(64, 74, 92);
+        }
+
+        /* 로그인 모달 스타일 */
+        .modal {
+            display: none; /* 초기에는 숨겨진 상태 */
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 900px;
+            border-radius: 8px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .login-container, .social-login-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 45%; /* 각각의 너비를 설정하여 두 영역이 나란히 표시되도록 */
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        td {
+            padding: 10px;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #000;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #fff;
+            color: #000;
+            border: 1px solid #000; 
+        }
+
+        .signup-button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: #dcdcdc;
+            color: #000;
+            margin-top: 10px;
+        }
+
+        .signup-button:hover {
+            background-color: #dcdcdc;
+            color: white;
+        }
+
+        .social-login-container ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .social-login-container li {
+            margin-bottom: 10px;
+        }
+
+        .social-login-button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .naver-button {
+            background-color: #1DB954;
+        }
+
+        .kakao-button {
+            background-color: #F7E03C;
+        }
+        
+        .google-button {
+            background-color: white;
+            color: black;
+            border: 1px solid #ccc;
+        }
+
+        .login-text {
+            text-align: center;
+        }
+
+        .login-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .login-message {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .social-login-container p {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table, td {
+            border: none;
+        }
