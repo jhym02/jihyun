@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ page import="java.util.List"%>
 <%@ page import="com.smhrd.HourlyData"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -55,23 +56,7 @@
 </head>
 <body>
 
-	<header>
-		<div class="logo">
-			<i class="bi bi-brightness-alt-high"></i>
-			<h1>SolaPower</h1>
-		</div>
-		<nav>
-			<ul>
-				<li><a href="#">발전지도</a></li>
-				<li><a href="#">관련소식</a></li>
-			</ul>
-		</nav>
-		<div class="user-info">
-			<i class="bi bi-person"> 박유진님</i>
-			<button>로그아웃</button>
-		</div>
-	</header>
-
+    <jsp:include page="header.jsp" />
 	<div class="banner">
 		<img src="assets/img/sola2.png" alt="배너 이미지">
 	</div>
