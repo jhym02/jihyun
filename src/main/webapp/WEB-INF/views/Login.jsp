@@ -27,7 +27,7 @@
 			<button class="naver"><img src="assets/img/naver.png" class="icon"> 네이버 로그인</button>
 			<button class="google"><img src="assets/img/google.png" class="icon"> Google 로그인</button>
 		</div>
-	</div>
+	</div> 
 	
 	<jsp:include page="footer.jsp" />
 </body>
