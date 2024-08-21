@@ -47,5 +47,12 @@
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 	<script src="assets/js/kakaoLogin.js"></script>
+	
+	<!-- 로그인 성공/실패 상태를 JavaScript로 전달 -->
+	
+	<script src="assets/js/loginResult.js"></script>
+	
+	
+	
 </body>
 </html>
