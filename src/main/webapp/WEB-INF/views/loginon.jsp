@@ -56,7 +56,7 @@
 <body>
 
 	<header>
-		<div class="logo">
+		 <div class="logo">
 			<i class="bi bi-brightness-alt-high"></i>
 			<h1>SolaPower</h1>
 		</div>
