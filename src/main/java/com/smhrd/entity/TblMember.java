@@ -25,4 +25,6 @@ public class TblMember {
 	private String memGender;
 //	생년월일
 	private Date memBirth;
+//	회원탈퇴
+	private String memDel="N";
 }
