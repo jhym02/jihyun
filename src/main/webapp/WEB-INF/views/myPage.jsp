@@ -10,8 +10,12 @@
 <body>
 	<jsp:include page="header.jsp" />
 
-	<!-- 배너 이미지 -->
-	<img src="assets/img/mypage.png" alt="My Page Banner">
+	<!-- 이미지 컨테이너 -->
+	<div class="image-container">
+	    <img src="assets/img/mypage.png" alt="My Page Banner">
+	    <!-- 이미지 위에 표시될 텍스트 -->
+	    <div class="image-text">마이페이지</div>
+	</div>
 
 	<!-- 폼 컨테이너 -->
 	<div class="form-container">

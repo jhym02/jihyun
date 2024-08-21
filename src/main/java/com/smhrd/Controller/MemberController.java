@@ -1,6 +1,5 @@
 package com.smhrd.Controller;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
@@ -10,9 +9,6 @@ import com.smhrd.entity.TblMember;
 import com.smhrd.repository.MemberRepository;
 
 import jakarta.servlet.http.HttpSession;
-
-
-
 
 @Controller
 public class MemberController {
@@ -54,47 +50,53 @@ public class MemberController {
 
 		return "redirect:main";
 	}
-	
-	// 로그인 화면 이동
-		@RequestMapping("/Go_Login")
-		public String Go_Login() {
 
-			return "Login";
-		}
-	
+	// 로그인 화면 이동
+	@RequestMapping("/Go_Login")
+	public String Go_Login() {
+
+		return "Login";
+	}
+
 	// 로그아웃
 	@RequestMapping("/Logout")
 	public String Logout(HttpSession session) {
 		session.invalidate();
 		return "redirect:main";
 	}
-	
+
 	// 카카오 로그인
 	@RequestMapping("/KakaoLogSuc")
-	public String KakaoLogSuc(String nickname,HttpSession session) {
-		
-		session.setAttribute("user_nick",nickname);
-		
+	public String KakaoLogSuc(String nickname, HttpSession session) {
+
+		session.setAttribute("user_nick", nickname);
+
 		return "redirect:main";
 	}
+
 	// 로그인 후 페이지
-		@RequestMapping("/loginon")
-		public String gologinon() {
-			return "loginon";
-		}
-		
-		
-		// 발전량데이터테이블
-		@RequestMapping("/dataTable")
-		public String goDataTable() {
-			return "dataTable";
-		}
+	@RequestMapping("/loginon")
+	public String gologinon() {
+		return "loginon";
+	}
+
+	// 발전량데이터테이블
+	@RequestMapping("/dataTable")
+	public String goDataTable() {
+		return "dataTable";
+	}
+
 	// 마이페이지로 이동
 	@RequestMapping("/Go_Mypage")
 	public String Go_Mypage() {
 
 		return "myPage";
-	} 
+	}
+
+	// 발전지도화면 이동
+	@RequestMapping("/Go_PowerMap")
+	public String Go_PowerMap() {
+
+		return "powerMap";
+	}
 }
-
-
