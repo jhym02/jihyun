@@ -16,10 +16,10 @@ public class MemberController {
 
 	@Autowired
 	MemberRepository MemRepo;
-	
+
 	@Autowired
 	MemberMapper Mapper;
-	
+
 	// 메인 페이지 호출
 	@RequestMapping("/main")
 	public String goMain() {
@@ -34,6 +34,16 @@ public class MemberController {
 
 		if (member != null) {
 			session.setAttribute("user", member);
+			if (member.getMemDel().equals("Y")) {
+
+				session.invalidate();
+
+				return "Login";
+			}
+		} else if (member == null) {
+			session.setAttribute("msg", "로그인이 필요합니다.");
+
+			return "Login";
 		}
 		return "redirect:main";
 	}
@@ -111,15 +121,18 @@ public class MemberController {
 		return "redirect:main";
 	}
 
-//	// 회원탈퇴
-//	@RequestMapping("/M_delete")
-//	public String M_delete(TblMember member, HttpSession session) {
-//
-//		TblMember user = (TblMember) session.getAttribute("user");
-//
-//		member.setMemId(user.getMemId());
-//		member.setMemDel("Y");
-//		MemRepo.save(member);
-//		return "redirect:main";
-//	}
+	// 회원탈퇴
+	@RequestMapping("/M_delete")
+	public String M_delete(TblMember member, HttpSession session) {
+
+		TblMember user = (TblMember) session.getAttribute("user");
+
+		member.setMemId(user.getMemId());
+		member.setMemDel("Y");
+		MemRepo.save(member);
+
+		session.invalidate();
+
+		return "redirect:main";
+	}
 }
