@@ -42,7 +42,6 @@
 			<label for="memBirth">생년월일</label><br> 
 			<input type="date" name="memBirth" id="memBirth"><br>
 			<br>
-
 			<!-- 버튼들을 가로로 배치하기 위한 컨테이너 -->
 			<div class="button-container">
 				<input type="button" value="이전단계" class="btn">
@@ -50,7 +49,6 @@
 			</div>
 		</form>
 	</div>
-
 	<jsp:include page="footer.jsp" />
 </body>
 </html>
