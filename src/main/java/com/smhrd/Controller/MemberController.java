@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.smhrd.entity.TblMember;
+import com.smhrd.mapper.MemberMapper;
 import com.smhrd.repository.MemberRepository;
 
 import jakarta.servlet.http.HttpSession;
@@ -15,6 +16,9 @@ public class MemberController {
 
 	@Autowired
 	MemberRepository MemRepo;
+
+	@Autowired
+	MemberMapper Mapper;
 
 	// 메인 페이지 호출
 	@RequestMapping("/main")
@@ -30,6 +34,16 @@ public class MemberController {
 
 		if (member != null) {
 			session.setAttribute("user", member);
+			if (member.getMemDel().equals("Y")) {
+
+				session.invalidate();
+
+				return "Login";
+			}
+		} else if (member == null) {
+			session.setAttribute("msg", "로그인이 필요합니다.");
+
+			return "Login";
 		}
 		return "redirect:main";
 	}
@@ -45,7 +59,6 @@ public class MemberController {
 	@RequestMapping("/Real_Join")
 	public String Real_Join(TblMember member) {
 
-		System.out.println(member.getMemBirth());
 		MemRepo.save(member);
 
 		return "redirect:main";
@@ -93,10 +106,40 @@ public class MemberController {
 		return "myPage";
 	}
 
+	// 회원탈퇴
+	@RequestMapping("/M_delete")
+	public String M_delete(TblMember member, HttpSession session) {
+
+		TblMember user = (TblMember) session.getAttribute("user");
+
+		member.setMemId(user.getMemId());
+		member.setMemDel("Y");
+		MemRepo.save(member);
+
+		session.invalidate();
+
+		return "redirect:main";
+	}
 	// 발전지도화면 이동
 	@RequestMapping("/Go_PowerMap")
 	public String Go_PowerMap() {
 
 		return "powerMap";
 	}
+	// 회원정보 수정
+	@RequestMapping("/M_modify")
+	public String M_modify(TblMember member, HttpSession session) {
+
+		TblMember user = (TblMember) session.getAttribute("user");
+
+		member.setMemId(user.getMemId());
+
+		MemRepo.save(member);
+
+		session.setAttribute("user", member);
+
+		return "redirect:main";
+	}
+
+
 }
