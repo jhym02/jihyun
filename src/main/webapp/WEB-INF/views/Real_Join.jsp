@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="assets/css/Real_join.css">
-<title>회원가입</title>
+<title>Join</title>
 <!-- jQuery 라이브러리 참조 -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- 외부 JavaScript 파일 참조 -->
