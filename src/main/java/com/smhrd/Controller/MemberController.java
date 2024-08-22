@@ -1,16 +1,18 @@
 package com.smhrd.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.smhrd.entity.TblMember;
 import com.smhrd.mapper.MemberMapper;
 import com.smhrd.repository.MemberRepository;
 
 import jakarta.servlet.http.HttpSession;
-
 @Controller
 public class MemberController {
 
@@ -106,7 +108,7 @@ public class MemberController {
 		return "myPage";
 	}
 
-//	// 회원탈퇴
+	// 회원탈퇴
 	@RequestMapping("/M_delete")
 	public String M_delete(TblMember member, HttpSession session) {
 
@@ -140,6 +142,13 @@ public class MemberController {
 
 		return "redirect:main";
 	}
+	
+	// 아이디 중복 체크
+    @GetMapping("/idCheck")
+    public ResponseEntity<Boolean> checkId(@RequestParam("memId") String memId) {
+        boolean isDuplicate = MemRepo.existsByMemId(memId);
+        return ResponseEntity.ok(isDuplicate);
+    }
 
 
 }
