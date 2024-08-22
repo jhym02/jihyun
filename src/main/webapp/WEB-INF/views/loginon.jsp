@@ -56,6 +56,27 @@
 </head>
 <body>
 
+	<header>
+		 <div class="logo">
+			<i class="bi bi-brightness-alt-high"></i>
+			<h1>SolaPower</h1>
+		</div>
+		<nav>
+			<ul>
+				<li><a href="#">발전지도</a></li>
+				<li><a href="#">관련소식</a></li>
+			</ul>
+		</nav>
+		<div class="user-info">
+			<i class="bi bi-person"> 박유진님</i>
+			<button>로그아웃</button>
+		</div>
+	</header>
+
+	<div class="banner">
+		<img src="assets/img/sola2.png" alt="배너 이미지">
+	</div>
+
 	<jsp:include page="header.jsp" />
 	 <hr class="divider">
 	<main>

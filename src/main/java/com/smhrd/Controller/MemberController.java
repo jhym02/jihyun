@@ -84,7 +84,20 @@ public class MemberController {
 		return "redirect:main";
 	}
 
-	// 로그인 후 페이지
+		
+		// rec 페이지
+		@RequestMapping("/data")
+		public String goDisplayData() {
+			return "data";
+		}
+		// smp 페이지
+		@RequestMapping("/smp")
+		public String goSmp() {
+			return "smp";
+		}
+		
+		
+		
 	@RequestMapping("/loginon")
 	public String gologinon() {
 		return "loginon";

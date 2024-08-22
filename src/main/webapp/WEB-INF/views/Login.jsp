@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.io.BufferedReader, java.io.InputStreamReader, java.io.IOException, java.net.HttpURLConnection, java.net.URL" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -43,6 +47,26 @@
 	</div>
 
 	<jsp:include page="footer.jsp" />
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+			<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+			<script src="assets/js/kakaoLogin.js"></script>
+			<script>
+        document.addEventListener("DOMContentLoaded", function() {
+            if (typeof xmlData1 !== 'undefined') {
+                var parser1 = new DOMParser();
+                var xmlDoc1 = parser1.parseFromString(xmlData1, "text/xml");
+
+                // TradeList API에서 관련 데이터를 추출합니다.
+                var items1 = xmlDoc1.getElementsByTagName("item");
+                if (items1.length > 0) {
+                    var recprice = items1[0].getElementsByTagName("recprice")[0].textContent;
+
+                    // 추출한 데이터로 HTML 업데이트
+                    document.getElementById("recValue").textContent = recprice; // REC 값이 이곳에 표시됩니다.
+                }
+            }
+        });
+    </script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
