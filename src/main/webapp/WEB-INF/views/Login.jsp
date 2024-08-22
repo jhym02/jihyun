@@ -49,9 +49,17 @@
 	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 	<script src="assets/js/kakaoLogin.js"></script>
 	
-	<!-- 로그인 성공/실패 상태를 JavaScript로 전달 -->
+	 <!-- 로그인 결과에 따라 alert 표시 -->
+	<script>
 	
-	<script src="assets/js/loginResult.js"></script>
+		// 세션에서 메시지를 받아와서 출력하고, 세션에서 삭제
+		
+    	var msg = "${sessionScope.msg}";
+    	if (msg) {
+       		alert(msg);
+       	 <% session.removeAttribute("msg"); %> <!-- 메시지 출력 후 세션에서 제거 -->
+    	}
+    </script>
 	
 	
 	

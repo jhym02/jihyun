@@ -31,18 +31,13 @@ public class MemberController {
 	public String Real_Login(String memId, String memPw, HttpSession session) {
 
 		TblMember member = MemRepo.findByMemIdAndMemPw(memId, memPw);
-
-		if (member != null) {
+		
+		if (member != null && member.getMemDel().equals("N")) {
 			session.setAttribute("user", member);
-			if (member.getMemDel().equals("Y")) {
+			session.setAttribute("msg", "로그인 성공했습니다.");
 
-				session.invalidate();
-
-				return "Login";
-			}
-		} else if (member == null) {
-			session.setAttribute("msg", "로그인이 필요합니다.");
-
+		} else {
+			session.setAttribute("msg", "로그인 실패했습니다. 다시 시도해주세요.");
 			return "Login";
 		}
 		return "redirect:main";
@@ -115,9 +110,9 @@ public class MemberController {
 		member.setMemId(user.getMemId());
 
 		MemRepo.save(member);
-
+		
 		session.setAttribute("user", member);
-
+		session.setAttribute("msg", "회원정보 수정 완료");
 		return "redirect:main";
 	}
 
@@ -131,8 +126,8 @@ public class MemberController {
 		member.setMemDel("Y");
 		MemRepo.save(member);
 
-		session.invalidate();
-
+		session.removeAttribute("user");
+		session.setAttribute("msg", "회원탈퇴성공");
 		return "redirect:main";
 	}
 }
