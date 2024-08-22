@@ -56,27 +56,15 @@
 </head>
 <body>
 
-    <jsp:include page="header.jsp" />
-	<div class="banner">
-		<img src="assets/img/sola2.png" alt="배너 이미지">
-	</div>
-
+	<jsp:include page="header.jsp" />
+	 <hr class="divider">
 	<main>
 		<div class="container">
 			<aside class="sidebar">
 				<div class="plant">
 					<p>발전소_01</p>
+					<p>전라남도 나주시 빛가람동</p>
 					<p>ID : 123456</p>
-					<button>삭제</button>
-				</div>
-				<div class="plant">
-					<p>발전소_02</p>
-					<p>ID : 000000</p>
-					<button>삭제</button>
-				</div>
-				<div class="plant">
-					<p>발전소_03</p>
-					<p>ID : 7891011</p>
 					<button>삭제</button>
 				</div>
 				<button class="add-plant">발전소 등록 +</button>

@@ -6,11 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="assets/css/login.css">
-<title>회원가입</title>
+<title>Login</title>
 </head>
 <body>
 	<jsp:include page="header.jsp" />
-
 
 	<form action="Real_Login" method="post">
 		<!-- 배너 이미지 추가 -->
@@ -48,7 +47,6 @@
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 	<script src="assets/js/kakaoLogin.js"></script>
-	
 	 <!-- 로그인 결과에 따라 alert 표시 -->
 	<script>
 	
@@ -60,8 +58,5 @@
        	 <% session.removeAttribute("msg"); %> <!-- 메시지 출력 후 세션에서 제거 -->
     	}
     </script>
-	
-	
-	
 </body>
 </html>
