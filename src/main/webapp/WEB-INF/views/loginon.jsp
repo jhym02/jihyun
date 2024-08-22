@@ -20,42 +20,9 @@
 <!-- jQuery 추가 -->
 <script src="assets/js/chart.js"></script>
 <!-- 차트 관련 JavaScript 파일 포함 -->
-<script>
-	$(document).ready(
-			function() {
-				// 탭 버튼 클릭 시 해당 탭 내용만 표시
-				$('.tab-button').on('click', function() {
-					var target = $(this).attr('onclick').split("'")[1];
-					$('.tab-content').removeClass('active');
-					$('#' + target).addClass('active');
-					$('.tab-button').removeClass('active');
-					$(this).addClass('active');
-				});
-
-				// 차트 초기화
-				function initCharts() {
-					var chartToday = echarts.init(document
-							.getElementById('chart-container-today'));
-					var chartTomorrow = echarts.init(document
-							.getElementById('chart-container-tomorrow'));
-
-					var optionToday = {
-					// 차트 옵션 설정
-					};
-					var optionTomorrow = {
-					// 차트 옵션 설정
-					};
-
-					chartToday.setOption(optionToday);
-					chartTomorrow.setOption(optionTomorrow);
-				}
-
-				initCharts();
-			});
-</script>
+<script src="assets/js/loginon.js"></script>
 </head>
 <body>
-
 	<jsp:include page="header.jsp" />
 	 <hr class="divider">
 	<main>
@@ -278,7 +245,7 @@
 
 			// 한글 처리를 해주기 위해 BOM 추가하기
 			const BOM = "\uFEFF";
-			csv = BOM + csv;
+			csv = BOM + csv;                  
 
 			csvFile = new Blob([ csv ], {
 				type : "text/csv"
