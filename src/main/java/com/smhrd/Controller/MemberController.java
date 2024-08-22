@@ -85,19 +85,7 @@ public class MemberController {
 	}
 
 		
-		// rec 페이지
-		@RequestMapping("/data")
-		public String goDisplayData() {
-			return "data";
-		}
-		// smp 페이지
-		@RequestMapping("/smp")
-		public String goSmp() {
-			return "smp";
-		}
-		
-		
-		
+				
 	@RequestMapping("/loginon")
 	public String gologinon() {
 		return "loginon";
@@ -160,12 +148,7 @@ public class MemberController {
     }
 
 
- // 발전지도화면 이동
- 	@RequestMapping("/ss")
- 	public String Goss() {
-
- 		return "ss";
- 	}
+ 
     
     
 }

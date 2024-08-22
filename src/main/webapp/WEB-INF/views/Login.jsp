@@ -6,6 +6,15 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="assets/css/login.css">
+<!-- SweetAlert2와 Bootstrap CSS 로드 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.css">
+    <style type="text/css">
+        .content {
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
 <title>Login</title>
 </head>
 <body>
@@ -68,16 +77,22 @@
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 	<script src="assets/js/kakaoLogin.js"></script>
-	 <!-- 로그인 결과에 따라 alert 표시 -->
-	<script>
-	
-		// 세션에서 메시지를 받아와서 출력하고, 세션에서 삭제
-		
-    	var msg = "${sessionScope.msg}";
-    	if (msg) {
-       		alert(msg);
-       	 <% session.removeAttribute("msg"); %> <!-- 메시지 출력 후 세션에서 제거 -->
-    	}
-    </script>
+	 <!-- 로그인 결과에 따라 SweetAlert2를 사용하여 alert 표시 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.all.min.js"></script>
+<script>
+    // 세션에서 메시지를 받아와서 출력하고, 세션에서 삭제
+    var msg = "${sessionScope.msg}";
+    if (msg) {
+        Swal.fire({
+            title: "로그인 실패",
+            text: msg,
+            icon: "error",
+            confirmButtonColor: "#6DD66D", // 확인 버튼 색상 설정
+            confirmButtonText: "확인"
+        });
+        <% session.removeAttribute("msg"); %> <!-- 메시지 출력 후 세션에서 제거 -->
+    }
+</script>
+
 </body>
 </html>
