@@ -1,3 +1,5 @@
+<%@ page import="java.io.BufferedReader, java.io.InputStreamReader, java.io.IOException, java.net.HttpURLConnection, java.net.URL" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -41,12 +43,25 @@
 		</button>
 	</div>
 	</div>
-
 	<jsp:include page="footer.jsp" />
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+			<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+			<script src="assets/js/kakaoLogin.js"></script>
+
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 	<script src="assets/js/kakaoLogin.js"></script>
-
+	 <!-- 로그인 결과에 따라 alert 표시 -->
+	<script>
+	
+		// 세션에서 메시지를 받아와서 출력하고, 세션에서 삭제
+		
+    	var msg = "${sessionScope.msg}";
+    	if (msg) {
+       		alert(msg);
+       	 <% session.removeAttribute("msg"); %> <!-- 메시지 출력 후 세션에서 제거 -->
+    	}
+    </script>
 </body>
 </html>

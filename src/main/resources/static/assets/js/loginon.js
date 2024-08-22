@@ -25,46 +25,7 @@ $(document).ready(function() {
     }
 
     initCharts();
-
-    // 모달 관련 변수
-    var modal = document.getElementById("plant-modal");
-    var btn = document.querySelector(".add-plant");
-    var span = document.getElementsByClassName("close")[0];
-
-    // 발전소 등록 버튼 클릭 시 모달 열기
-    btn.onclick = function() {
-        modal.style.display = "block";
-    }
-
-    // 모달의 X 버튼 클릭 시 모달 닫기
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-
-    // 모달 외부 클릭 시 모달 닫기
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-
-    // 탭 버튼 클릭 시 탭 내용 표시
-    window.showTab = function(tabId) {
-        var tabs = document.querySelectorAll('.tab-content');
-        var buttons = document.querySelectorAll('.tab-button');
-
-        tabs.forEach(function(tab) {
-            tab.classList.remove('active');
-        });
-
-        buttons.forEach(function(button) {
-            button.classList.remove('active');
-        });
-
-        document.getElementById(tabId).classList.add('active');
-        event.currentTarget.classList.add('active');
-    }
-
+    
     // CSV 다운로드 버튼 클릭 시 CSV 생성 및 다운로드
     $("#excelDownload").click(function() {
         let filename = "generation_data.csv";
@@ -77,9 +38,9 @@ $(document).ready(function() {
 
         // 테이블 헤더
         row.push("시간", "오늘 발전량 (kW)", "오늘 누적 발전량 (kW)", "오늘 일사량 (W/m²)",
-                "오늘 기온 (°C)", "오늘 풍속 (m/s)", "시간", "내일 발전량 (kW)",
-                "내일 누적 발전량 (kW)", "내일 일사량 (W/m²)", "내일 기온 (°C)",
-                "내일 풍속 (m/s)");
+                 "오늘 기온 (°C)", "오늘 풍속 (m/s)", "시간", "내일 발전량 (kW)",
+                 "내일 누적 발전량 (kW)", "내일 일사량 (W/m²)", "내일 기온 (°C)",
+                 "내일 풍속 (m/s)");
         csv.push(row.join(","));
 
         // 테이블 데이터
@@ -100,16 +61,33 @@ $(document).ready(function() {
 
         // 한글 처리를 해주기 위해 BOM 추가하기
         const BOM = "\uFEFF";
-        csv = BOM + csv;
+        csv = BOM + csv;                  
 
-        csvFile = new Blob([ csv ], {
-            type : "text/csv"
-        });
+        csvFile = new Blob([ csv ], { type : "text/csv" });
         downloadLink = document.createElement("a");
         downloadLink.download = filename;
         downloadLink.href = window.URL.createObjectURL(csvFile);
         downloadLink.style.display = "none";
         document.body.appendChild(downloadLink);
         downloadLink.click();
+    }
+
+    // 모달 관련 코드
+    var modal = document.getElementById("plant-modal");
+    var btn = document.querySelector(".add-plant");
+    var span = document.getElementsByClassName("close")[0];
+
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
     }
 });
