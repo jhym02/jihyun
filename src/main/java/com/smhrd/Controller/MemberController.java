@@ -33,18 +33,13 @@ public class MemberController {
 	public String Real_Login(String memId, String memPw, HttpSession session) {
 
 		TblMember member = MemRepo.findByMemIdAndMemPw(memId, memPw);
-
-		if (member != null) {
+		
+		if (member != null && member.getMemDel().equals("N")) {
 			session.setAttribute("user", member);
-			if (member.getMemDel().equals("Y")) {
+			session.setAttribute("msg", "로그인 성공했습니다.");
 
-				session.invalidate();
-
-				return "Login";
-			}
-		} else if (member == null) {
-			session.setAttribute("msg", "로그인이 필요합니다.");
-
+		} else {
+			session.setAttribute("msg", "로그인 실패했습니다. 다시 시도해주세요.");
 			return "Login";
 		}
 		return "redirect:main";
@@ -121,6 +116,21 @@ public class MemberController {
 		return "myPage";
 	}
 
+	// 회원정보 수정
+	@RequestMapping("/M_modify")
+	public String M_modify(TblMember member, HttpSession session) {
+
+		TblMember user = (TblMember) session.getAttribute("user");
+
+		member.setMemId(user.getMemId());
+
+		MemRepo.save(member);
+		
+		session.setAttribute("user", member);
+		session.setAttribute("msg", "회원정보 수정 완료");
+		return "redirect:main";
+	}
+
 	// 회원탈퇴
 	@RequestMapping("/M_delete")
 	public String M_delete(TblMember member, HttpSession session) {
@@ -131,8 +141,8 @@ public class MemberController {
 		member.setMemDel("Y");
 		MemRepo.save(member);
 
-		session.invalidate();
-
+		session.removeAttribute("user");
+		session.setAttribute("msg", "회원탈퇴성공");
 		return "redirect:main";
 	}
 	// 발전지도화면 이동
@@ -141,21 +151,7 @@ public class MemberController {
 
 		return "powerMap";
 	}
-	// 회원정보 수정
-	@RequestMapping("/M_modify")
-	public String M_modify(TblMember member, HttpSession session) {
 
-		TblMember user = (TblMember) session.getAttribute("user");
-
-		member.setMemId(user.getMemId());
-
-		MemRepo.save(member);
-
-		session.setAttribute("user", member);
-
-		return "redirect:main";
-	}
-	
 	// 아이디 중복 체크
     @GetMapping("/idCheck")
     public ResponseEntity<Boolean> checkId(@RequestParam("memId") String memId) {
