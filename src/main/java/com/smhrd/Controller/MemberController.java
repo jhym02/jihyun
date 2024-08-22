@@ -28,22 +28,22 @@ public class MemberController {
 		return "main";
 	}
 
-	// 로그인
-	@RequestMapping("/Real_Login")
-	public String Real_Login(String memId, String memPw, HttpSession session) {
+	   // 로그인
+	   @RequestMapping("/Real_Login")
+	   public String Real_Login(String memId, String memPw, HttpSession session) {
 
-		TblMember member = MemRepo.findByMemIdAndMemPw(memId, memPw);
-		
-		if (member != null && member.getMemDel().equals("N")) {
-			session.setAttribute("user", member);
-			session.setAttribute("msg", "로그인 성공했습니다.");
+	      TblMember member = MemRepo.findByMemIdAndMemPw(memId, memPw);
+	      
+	      if (member != null && member.getMemDel().equals("N")) {
+	         session.setAttribute("user", member);
+	         session.setAttribute("msg", "로그인 성공했습니다.");
 
-		} else {
-			session.setAttribute("msg", "로그인 실패했습니다. 다시 시도해주세요.");
-			return "Login";
-		}
-		return "redirect:main";
-	}
+	      } else {
+	         session.setAttribute("msg", "로그인 실패했습니다. 다시 시도해주세요.");
+	         return "Login";
+	      }
+	      return "redirect:main";
+	   }
 
 	// 회원가입 화면 이동
 	@RequestMapping("/Go_Real_Join")
