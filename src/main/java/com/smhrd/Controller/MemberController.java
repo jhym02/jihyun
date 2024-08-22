@@ -3,7 +3,7 @@ package com.smhrd.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
-
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.smhrd.entity.TblMember;
 import com.smhrd.mapper.MemberMapper;
@@ -31,11 +31,11 @@ public class MemberController {
 	public String Real_Login(String memId, String memPw, HttpSession session) {
 
 		TblMember member = MemRepo.findByMemIdAndMemPw(memId, memPw);
-
+		
 		if (member != null) {
 			session.setAttribute("user", member);
 			if (member.getMemDel().equals("Y")) {
-
+				
 				session.invalidate();
 
 				return "Login";
@@ -135,4 +135,18 @@ public class MemberController {
 
 		return "redirect:main";
 	}
+	
+	// 전국 발전지도 이동
+	@GetMapping("/powerMap")
+	public void goPowerMap() {
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 }
