@@ -88,6 +88,18 @@
         <div class="sub-title">REC 현물</div>
         <div class="value" id="recValue">78,100</div> <!-- REC 값을 표시할 위치 -->
     </div>
+    <div class="content">
+		<!-- SweetAlert 메시지 -->
+		<script>
+            Swal.fire({
+                title: "농작물 재배 알림",
+                text: "감자, 고구마, 참깨, 팥의 모종을 심을 시기입니다!",
+                icon: "info",
+                confirmButtonColor: "#6DD66D", // 확인 버튼 색상 설정
+                confirmButtonText: "확인"
+            });
+        </script>
+	</div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {

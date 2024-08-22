@@ -160,4 +160,12 @@ public class MemberController {
     }
 
 
+ // 발전지도화면 이동
+ 	@RequestMapping("/ss")
+ 	public String Goss() {
+
+ 		return "ss";
+ 	}
+    
+    
 }
