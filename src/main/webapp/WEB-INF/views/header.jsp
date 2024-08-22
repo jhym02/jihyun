@@ -13,7 +13,7 @@ header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 5px 110px;
+	padding: 5px 170px;
 	background-color: white;
 }
 
@@ -39,8 +39,7 @@ header {
 }
 
 .bi-person {
-	font-size: 35px;
-	margin-right: 30px;
+	font-size: 37px;
 }
 
 .dropdown {
@@ -51,6 +50,9 @@ header {
 	cursor: pointer;
 }
 
+.myname {
+	font-size: 23px;
+}
 .dropdown-content {
 	display: none;
 	position: absolute;
@@ -95,26 +97,26 @@ a {
 			</div>
 		</a>
 		<div class="dropdown">
-			<i class="bi bi-person"></i>
 			<c:choose>
 				<c:when test="${!empty user_nick}">
 					<!-- 카카오 로그인했을 경우 -->
+					<i class="bi bi-person"></i> <span class="myname">${user_nick}님</span>
 					<div class="dropdown-content">
-						<i class="bi bi-person"></i> <span>${user_nick}님</span>
-						<a href="MyPage">마이페이지</a>
+						<a href="Go_Mypage">마이페이지</a>
 						<a href="Logout">로그아웃</a>
 					</div>
 				</c:when>
 				<c:when test="${!empty user}">
 					<!-- 일반 로그인했을 경우 -->
+					<i class="bi bi-person"></i><span class="myname">${user.memName}님</span>
 					<div class="dropdown-content">
-						<i class="bi bi-person"></i> <span>${user.memName}님</span>
-						<a href="MyPage">마이페이지</a>
+						<a href="Go_Mypage">마이페이지</a>
 						<a href="Logout">로그아웃</a>
 					</div>
 				</c:when>
 				<c:otherwise>
 					<!-- 로그인하지 않았을 경우 -->
+					<i class="bi bi-person"></i>
 					<div class="dropdown-content">
 						<a href="Go_Login" id="openLoginModal">로그인</a>
 						<a href="Go_Real_Join">회원가입</a>

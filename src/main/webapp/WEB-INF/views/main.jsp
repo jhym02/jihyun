@@ -22,11 +22,10 @@
                         <button type="button" class="btn_direct">바로가기</button>
                     </a>
                 </div>
-
                 <div class="button-container">
                     <div class="button-text">전국발전지도</div>
                     <div class="d-flex flex-column">
-                        <a href="#">
+                        <a href="Go_PowerMap">
                             <button type="button" class="btn_direct">바로가기</button>
                         </a>
                     </div>
