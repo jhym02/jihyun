@@ -106,7 +106,7 @@ public class MemberController {
 		return "myPage";
 	}
 
-	// 회원탈퇴
+//	// 회원탈퇴
 	@RequestMapping("/M_delete")
 	public String M_delete(TblMember member, HttpSession session) {
 

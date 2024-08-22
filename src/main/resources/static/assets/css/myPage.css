@@ -55,7 +55,7 @@ label {
     display: flex;
     justify-content: center;
     gap: 20px;
-    margin-top: 20px;
+    margin-top: 40px;
 }
 
 .btn1 {
@@ -112,4 +112,29 @@ label {
     font-size: 40px;
     font-weight: bold;
     text-align: center;
+}
+
+/* 라디오 버튼과 라벨을 한 줄로 정렬하는 스타일 */
+.radio-group {
+    display: flex;
+    align-items: center; 
+}
+
+.radio-group label {
+    margin-right: 15px;
+}
+
+.radio-group input[type="radio"] {
+    margin-right: 10px; 
+}
+
+.gender-label {
+    margin-bottom: 5px;
+    display: inline-block;
+}
+
+.birth-label {
+	margin-top: 20px;
+    margin-bottom: 10px;
+    display: inline-block;
 }
