@@ -91,6 +91,19 @@
                <button class="tab-button active" onclick="showTab('generation')">발전량</button>
                <button class="tab-button" onclick="showTab('weather')">기상</button>
             </div>
+	<jsp:include page="header.jsp" />
+	 <hr class="divider">
+	<main>
+		<div class="container">
+			<aside class="sidebar">
+				<div class="plant">
+					<p>발전소_01</p>
+					<p>전라남도 나주시 빛가람동</p>
+					<p>ID : 123456</p>
+					<button>삭제</button>
+				</div>
+				<button class="add-plant">발전소 등록 +</button>
+			</aside>
 
             <!-- CSV 다운로드 버튼 추가 -->
             <div>
