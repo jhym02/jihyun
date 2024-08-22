@@ -14,8 +14,12 @@
 <body>
 	<jsp:include page="header.jsp" />
 
-	<!-- 배너 이미지 추가 -->
-	<img src="assets/img/banner.png">
+	<!-- 이미지 컨테이너 -->
+	<div class="image-container">
+		<img src="assets/img/login.png" alt="joinBanner">
+		<!-- 이미지 위에 표시될 텍스트 -->
+		<div class="image-text">회원가입</div>
+	</div>
 
 	<!-- 폼 컨테이너 추가 -->
 	<div class="form-container">
