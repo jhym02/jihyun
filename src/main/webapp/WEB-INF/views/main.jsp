@@ -25,7 +25,7 @@
                 <div class="button-container">
                     <div class="button-text">전국발전지도</div>
                     <div class="d-flex flex-column">
-                        <a href="powerMap">
+                        <a href="Go_PowerMap">
                             <button type="button" class="btn_direct">바로가기</button>
                         </a>
                     </div>
@@ -46,5 +46,16 @@
     </main>
    	<!-- footer.jsp 파일 포함 -->
     <jsp:include page="footer.jsp" /> 
+    	 <!-- 로그인 결과에 따라 alert 표시 -->
+	<script>
+	
+		// 세션에서 메시지를 받아와서 출력하고, 세션에서 삭제
+		
+    	var msg = "${sessionScope.msg}";
+    	if (msg) {
+       		alert(msg);
+       	 <% session.removeAttribute("msg"); %> <!-- 메시지 출력 후 세션에서 제거 -->
+    	}
+    </script>
 </body>
 </html>

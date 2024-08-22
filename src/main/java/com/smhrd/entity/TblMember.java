@@ -27,4 +27,7 @@ public class TblMember {
 	private Date memBirth;
 //	회원탈퇴
 	private String memDel="N";
+
 }
+
+

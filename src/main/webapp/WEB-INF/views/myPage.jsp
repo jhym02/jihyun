@@ -11,8 +11,12 @@
 <body>
 	<jsp:include page="header.jsp" />
 
-	<!-- 배너 이미지 -->
-	<img src="assets/img/mypage.png" alt="My Page Banner">
+	<!-- 이미지 컨테이너 -->
+	<div class="image-container">
+		<img src="assets/img/mypage.png" alt="My Page Banner">
+		<!-- 이미지 위에 표시될 텍스트 -->
+		<div class="image-text">마이페이지</div>
+	</div>
 
 	<!-- 폼 컨테이너 -->
 	<div class="form-container">
@@ -26,16 +30,17 @@
 			<input type="text" name="memName" id="memName"
 				value="${user.memName}"> <label for="memEmail">이메일</label> <input
 				type="email" name="memEmail" id="memEmail" value="${user.memEmail}">
-			<label for="memBirth">생년월일</label><br> <input type="date"
-				name="memBirth" id="memBirth" value="${user.memBirth}"> <label>성별</label><br>
+			<label class="gender-label">성별</label><br>
 			<div class="radio-group">
 				<input type="radio" name="memGender" value="M" id="male"
-					<c:if test="${user.memGender eq 'M'}">checked="checked"</c:if>> <label
-					for="male">남자</label> <input type="radio" name="memGender"
-					value="W" id="female"
-					<c:if test="${user.memGender eq 'W'}">checked="checked"</c:if>> <label
-					for="female">여성</label>
+					<c:if test="${user.memGender eq 'M'}">checked="checked"</c:if>
+					onclick="return false;"> <label for="male">남자</label> <input
+					type="radio" name="memGender" value="W" id="female"
+					<c:if test="${user.memGender eq 'W'}">checked="checked"</c:if>
+					onclick="return false;"> <label for="female">여성</label>
 			</div>
+			<label for="memBirth" class="birth-label">생년월일</label><br> <input type="date"
+				name="memBirth" id="memBirth" value="${user.memBirth}" readonly>
 			<br>
 			<!-- 버튼 컨테이너 -->
 			<div class="button-container">
@@ -45,6 +50,6 @@
 		</form>
 	</div>
 	<jsp:include page="footer.jsp" />
-
+	
 </body>
 </html>
