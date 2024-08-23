@@ -1,4 +1,5 @@
 <%@ page import="java.io.BufferedReader, java.io.InputStreamReader, java.io.IOException, java.net.HttpURLConnection, java.net.URL, java.io.StringReader, javax.xml.parsers.DocumentBuilder, javax.xml.parsers.DocumentBuilderFactory, org.w3c.dom.Document, org.w3c.dom.Element, org.w3c.dom.NodeList, org.xml.sax.InputSource" %>
+<%@ page import="java.text.SimpleDateFormat, java.util.Calendar" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -44,12 +45,16 @@
                     double smpValue = 0;
                     double recValue = 0;
 
+                    // 현재 날짜 가져오기
+                    Calendar cal = Calendar.getInstance();
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+                    String tradeDaySMP = sdf.format(cal.getTime()); // 현재 날짜를 yyyyMMdd 형식으로 포맷
+
                     // SMP API 호출
                     String serviceKeySMP = "2ge0zGTfTC/p1uEtJys8HdmQZZewxAJxdTxSzt3Kuv0OJDW6FvPFw83YYnAed7xmF4fWhMS1Y/KgZW2XNrDyrg=="; 
                     String apiUrlSMP = "https://openapi.kpx.or.kr/openapi/smp1hToday/getSmp1hToday";
                     String pageNoSMP = "1"; 
                     String numOfRowsSMP = "24"; 
-                    String tradeDaySMP = "20240822"; 
                     String areaCdSMP = "1"; 
                     
                     String urlStrSMP = apiUrlSMP + "?serviceKey=" + serviceKeySMP
@@ -153,7 +158,7 @@
                         out.print("<p>Error: " + e.getMessage() + "</p>");
                     }
 
-                 // SMP와 REC의 소수점 자리수를 맞춘 후 더하기
+                    // SMP와 REC의 소수점 자리수를 맞춘 후 더하기
                     double combinedValue = smpValue + (recValue / 1000);  // 예시: SMP와 REC를 같은 단위로 맞춤
 
                     // 소수점 두 자리와 천 단위 구분 기호 적용
