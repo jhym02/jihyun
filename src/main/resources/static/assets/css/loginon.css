@@ -2,7 +2,7 @@
     border: 0;
     height: 1px;
     background-color: #ccc; /* 연한 회색 가로선 */
-    margin: 0; /* 위아래로 여백 추가 */
+    margin: 5px 0; /* 위아래로 여백 추가 */
 }
 
 main {
@@ -30,7 +30,7 @@ main {
    margin-bottom: 10px;
    padding: 10px;
    border-radius: 5px;
-	border: 1px solid #ccc;
+   border: 1px solid #ccc;
 }
 
 .sidebar .plant p {
@@ -94,6 +94,10 @@ i {
    font-size: 25px;
 }
 
+.bi-person {
+   font-size: 20px;
+}
+
 /* 탭 및 테이블 스타일링 */
 .tabs {
     margin-bottom: 1rem;
@@ -147,4 +151,3 @@ tbody tr:nth-child(even) {
 tbody tr:hover {
     background-color: #e9ecef;
 }
-

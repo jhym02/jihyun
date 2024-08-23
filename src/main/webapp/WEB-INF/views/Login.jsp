@@ -10,10 +10,14 @@
 </head>
 <body>
 	<jsp:include page="header.jsp" />
+	<!-- 이미지 컨테이너 -->
+	<div class="image-container">
+		<img src="assets/img/login.png" alt="loginBanner">
+		<!-- 이미지 위에 표시될 텍스트 -->
+		<div class="image-text">로그인</div>
+	</div>
 
 	<form action="Real_Login" method="post">
-		<!-- 배너 이미지 추가 -->
-		<img src="assets/img/login.png">
 		<div class="container">
 			<div class="login-form">
 				<h2>로그인</h2>
