@@ -13,11 +13,11 @@
         margin: 0 auto;
     }
 </style>
- <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
 </head>
 <body>
    <jsp:include page="header.jsp" />
-   <div id="map" style="width: 600px;height:1200px;"></div>
+   <div id="map" style="width: 600px;height:400px;"></div>
    <jsp:include page="footer.jsp" />
    <script src="assets/js/koreaMap.js"></script>
 </body>
