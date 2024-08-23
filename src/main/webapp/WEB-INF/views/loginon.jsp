@@ -57,19 +57,7 @@
                 <div>
                     <button id="excelDownload">Excel 다운로드</button>
                 </div>
-   <jsp:include page="header.jsp" />
-    <hr class="divider">
-   <main>
-      <div class="container">
-         <aside class="sidebar">
-            <div class="plant">
-               <p>발전소_01</p>
-               <p>전라남도 나주시 빛가람동</p>
-               <p>ID : 123456</p>
-               <button>삭제</button>
-            </div>
-            <button class="add-plant">발전소 등록 +</button>
-         </aside>
+  
 
                 <div id="generation" class="tab-content active">
                     <!-- 발전량 테이블 -->
@@ -167,5 +155,6 @@
             </form>
         </div>
     </div>
+    <jsp:include page="footer.jsp" />
 </body>
 </html>
