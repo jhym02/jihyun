@@ -2,7 +2,7 @@
     border: 0;
     height: 1px;
     background-color: #ccc; /* 연한 회색 가로선 */
-    margin: 5px 0; /* 위아래로 여백 추가 */
+    margin: 0; /* 위아래로 여백 추가 */
 }
 
 main {
@@ -92,10 +92,6 @@ main {
 i {
    font-style: normal;
    font-size: 25px;
-}
-
-.bi-person {
-   font-size: 20px;
 }
 
 /* 탭 및 테이블 스타일링 */
