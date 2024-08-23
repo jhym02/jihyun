@@ -125,6 +125,15 @@ i {
     float: right;
 }
 
+.tab-content {
+    display: none; /* 기본적으로 모든 탭 콘텐츠 숨김 */
+}
+
+.tab-content.active {
+    display: block; /* 활성화된 탭 콘텐츠만 표시 */
+}
+
+
 table {
     width: 100%;
     border-collapse: collapse;

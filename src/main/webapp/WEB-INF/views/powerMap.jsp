@@ -6,12 +6,6 @@
 <meta charset="UTF-8">
 <title>PowerMap</title>
 <style>
-#map {
-    width: 800px;
-    height: 800px;
-    margin: 20px auto;
-}
-
 .divider {
     border: 0;
     height: 1px;
@@ -19,13 +13,18 @@
     margin: 0;
 }
 
+#map {
+    width: 1000px;
+    height: 1000px;
+    margin: 20px auto;
+}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
 </head>
 <body>
 	<jsp:include page="header.jsp" />
 	<hr class="divider">
-	<div id="map"></div>
+		<div id="map"></div>
 	<jsp:include page="footer.jsp" />
 	<script src="assets/js/koreaMap.js"></script>
 </body>
