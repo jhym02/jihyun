@@ -18,7 +18,7 @@
     <script src="assets/js/chart.js"></script>
 </head>
 <body>
-    <jsp:include page="header.jsp" />
+   <jsp:include page="header.jsp" />
     <hr class="divider">
     <main>
         <div class="container">
@@ -78,7 +78,6 @@
                         </tbody>
                     </table>
                 </div>
-
                 <div id="weather" class="tab-content">
                     <!-- 기상 테이블 -->
                     <table id="data-table">
@@ -146,12 +145,14 @@
                 발전소 등록 <i class="bi bi-brightness-high-fill"></i>
             </h2>
             <form id="plant-form">
-                <label for="plant-name">발전소 이름:</label> <input type="text" id="plant-name" name="plant-name" required><br><br>
-                <label for="plant-id">발전소 ID:</label> <input type="text" id="plant-id" name="plant-id" required><br><br>
-                <label for="plant-address">발전소 주소:</label> <input type="text" id="plant-address" name="plant-address" required><br><br>
+                <label for="plant-name">발전소 이름</label> <input type="text" id="plant-name" name="plant-name" required><br><br>
+                <label for="plant-postcode">우편번호</label> <input type="text" id="plant-postcode" name="plant-postcode" required><br><br>
+                <label for="plant-address">발전소 주소</label> <input type="text" id="plant-address" name="plant-address" required><br><br>
+                <label for="plant-detail">상세주소</label> <input type="text" id="plant-detail" name="plant-detail" required><br><br>
                 <button type="submit">등록</button>
             </form>
         </div>
     </div>
+    <jsp:include page="footer.jsp" />
 </body>
 </html>

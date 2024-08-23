@@ -7,14 +7,8 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="assets/css/login.css">
 <!-- SweetAlert2와 Bootstrap CSS 로드 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">  -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.css">
-    <style type="text/css">
-        .content {
-            text-align: center;
-            padding: 20px;
-        }
-    </style>
 <title>Login</title>
 </head>
 <body>
@@ -55,7 +49,6 @@
 		</button>
 	</div>
 	</div>
-	<jsp:include page="footer.jsp" />
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 			<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 			<script src="assets/js/kakaoLogin.js"></script>
@@ -80,6 +73,6 @@
         <% session.removeAttribute("msg"); %> <!-- 메시지 출력 후 세션에서 제거 -->
     }
 </script>
-
+<jsp:include page="footer.jsp" />
 </body>
 </html>
