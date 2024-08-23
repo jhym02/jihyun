@@ -107,7 +107,7 @@ public class MemberController {
 		MemRepo.save(member);
 		
 		session.setAttribute("user", member);
-		session.setAttribute("msg", "회원정보 수정 완료");
+		
 		return "redirect:main";
 	}
 
