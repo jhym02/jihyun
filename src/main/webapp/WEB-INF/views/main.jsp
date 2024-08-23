@@ -171,5 +171,7 @@
             <div class="value"><%= formattedRecValue %></div> <!-- REC 값이 표시되는 부분 -->
         </div>
     </main>
+    
+
 </body>
 </html>
