@@ -51,11 +51,8 @@
                 <div class="tabs">
                     <button class="tab-button active" onclick="showTab('generation')">발전량</button>
                     <button class="tab-button" onclick="showTab('weather')">기상</button>
-                </div>
-
-                <!-- CSV 다운로드 버튼 추가 -->
-                <div>
-                    <button id="excelDownload">Excel 다운로드</button>
+                    <!-- CSV 다운로드 버튼 추가 -->
+                    <button id="excelDownload"><i class="bi bi-file-earmark-arrow-down"></i></button>
                 </div>
                 <div id="generation" class="tab-content active">
                     <!-- 발전량 테이블 -->
