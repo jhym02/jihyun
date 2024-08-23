@@ -30,7 +30,7 @@ main {
    margin-bottom: 10px;
    padding: 10px;
    border-radius: 5px;
-	border: 1px solid #ccc;
+   border: 1px solid #ccc;
 }
 
 .sidebar .plant p {
@@ -151,4 +151,3 @@ tbody tr:nth-child(even) {
 tbody tr:hover {
     background-color: #e9ecef;
 }
-

@@ -124,7 +124,6 @@ public class MemberController {
 		MemRepo.save(member);
 
 		session.removeAttribute("user");
-		session.setAttribute("msg", "회원탈퇴성공");
 		return "redirect:main";
 	}
 	

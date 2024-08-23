@@ -7,22 +7,20 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="assets/css/login.css">
 <!-- SweetAlert2와 Bootstrap CSS 로드 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">  -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.css">
-    <style type="text/css">
-        .content {
-            text-align: center;
-            padding: 20px;
-        }
-    </style>
 <title>Login</title>
 </head>
 <body>
 	<jsp:include page="header.jsp" />
+	<!-- 이미지 컨테이너 -->
+	<div class="image-container">
+		<img src="assets/img/login.png" alt="loginBanner">
+		<!-- 이미지 위에 표시될 텍스트 -->
+		<div class="image-text">로그인</div>
+	</div>
 
 	<form action="Real_Login" method="post">
-		<!-- 배너 이미지 추가 -->
-		<img src="assets/img/login.png">
 		<div class="container">
 			<div class="login-form">
 				<h2>로그인</h2>
@@ -51,28 +49,10 @@
 		</button>
 	</div>
 	</div>
-
-	<jsp:include page="footer.jsp" />
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 			<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 			<script src="assets/js/kakaoLogin.js"></script>
-			<script>
-        document.addEventListener("DOMContentLoaded", function() {
-            if (typeof xmlData1 !== 'undefined') {
-                var parser1 = new DOMParser();
-                var xmlDoc1 = parser1.parseFromString(xmlData1, "text/xml");
 
-                // TradeList API에서 관련 데이터를 추출합니다.
-                var items1 = xmlDoc1.getElementsByTagName("item");
-                if (items1.length > 0) {
-                    var recprice = items1[0].getElementsByTagName("recprice")[0].textContent;
-
-                    // 추출한 데이터로 HTML 업데이트
-                    document.getElementById("recValue").textContent = recprice; // REC 값이 이곳에 표시됩니다.
-                }
-            }
-        });
-    </script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
@@ -93,6 +73,6 @@
         <% session.removeAttribute("msg"); %> <!-- 메시지 출력 후 세션에서 제거 -->
     }
 </script>
-
+<jsp:include page="footer.jsp" />
 </body>
 </html>
