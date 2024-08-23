@@ -19,7 +19,9 @@
 </head>
 <body>
 
-   <jsp:include page="header.jsp" />
+  
+
+  <jsp:include page="header.jsp" />
     <hr class="divider">
     <main>
         <div class="container">
@@ -81,7 +83,7 @@
                     </table>
                 </div>
 
-          
+                        
 
                 <div id="weather" class="tab-content">
                     <!-- 기상 테이블 -->
@@ -157,6 +159,5 @@
             </form>
         </div>
     </div>
-    <jsp:include page="footer.jsp" />
 </body>
 </html>

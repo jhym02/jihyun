@@ -13,6 +13,28 @@ body {
     overflow-x: hidden; /* 가로 스크롤 제거 */
 }
 
+.image-container {
+    position: relative;
+    margin: 0 auto;
+}
+
+.image-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.image-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 40px;
+    text-align: center;
+}
+
+
 /* 폼 컨테이너 스타일 */
 .form-container {
     width: 100%; /* 폼의 너비를 부모 요소에 맞춤 */
