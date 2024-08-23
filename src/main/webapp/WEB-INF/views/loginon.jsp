@@ -18,45 +18,7 @@
     <script src="assets/js/chart.js"></script>
 </head>
 <body>
-    <jsp:include page="header.jsp" />
-    <hr class="divider">
-    <main>
-        <div class="container">
-            <aside class="sidebar">
-                <div class="plant">
-                    <p>발전소_01</p>
-                    <p>전라남도 나주시 빛가람동</p>
-                    <p>ID : 123456</p>
-                    <button>삭제</button>
-                </div>
-                <button class="add-plant">발전소 등록 +</button>
-            </aside>
 
-            <section class="main-content">
-                <div class="plant-info">
-                    <h3>발전소_01</h3>
-                    <div class="info">
-                        <div class="item">
-                            <p>오늘의 SMP 수익</p>
-                            <i class="bi bi-coin"> 131,021원</i>
-                        </div>
-                        <div class="item">
-                            <p>오늘의 발전 시간</p>
-                            <i class="bi bi-clock"> 5.25시간</i>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 탭 추가 -->
-                <div class="tabs">
-                    <button class="tab-button active" onclick="showTab('generation')">발전량</button>
-                    <button class="tab-button" onclick="showTab('weather')">기상</button>
-                </div>
-
-                <!-- CSV 다운로드 버튼 추가 -->
-                <div>
-                    <button id="excelDownload">Excel 다운로드</button>
-                </div>
    <jsp:include page="header.jsp" />
     <hr class="divider">
     <main>
@@ -96,29 +58,6 @@
                 <div>
                     <button id="excelDownload">Excel 다운로드</button>
                 </div>
-
-                <div id="generation" class="tab-content active">
-                    <!-- 발전량 테이블 -->
-                    <table class="chart-table">
-                        <thead>
-                            <tr>
-                                <th>오늘 발전량</th>
-                                <th>내일 발전량</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td style="width: 50%">
-                                    <div id="chart-container-today" class="chart" style="height: 400px; width: 100%;"></div>
-                                </td>
-                                <td>
-                                    <div id="chart-container-tomorrow" class="chart" style="height: 400px; width: 100%;"></div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
                 <div id="generation" class="tab-content active">
                     <!-- 발전량 테이블 -->
                     <table class="chart-table">
@@ -215,5 +154,6 @@
             </form>
         </div>
     </div>
+    <jsp:include page="footer.jsp" />
 </body>
 </html>
