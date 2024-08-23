@@ -91,3 +91,104 @@ $(document).ready(function() {
         }
     }
 });
+
+$(document).ready(function() {
+    // 탭 클릭 시 이벤트 처리
+    $('.tab-button').on('click', function() {
+        var tabId = $(this).attr('onclick').split("'")[1];
+        showTab(tabId);
+
+        if (tabId === 'generation') {
+            // 발전량 데이터 로드
+            $.ajax({
+                url: 'generationDataServlet', // 발전량 데이터 서블릿 URL
+                method: 'POST',
+                dataType: 'json',
+                success: function(data) {
+                    // 차트 업데이트
+                    updateGenerationCharts(data);
+                },
+                error: function() {
+                    alert('발전량 데이터를 로드할 수 없습니다.');
+                }
+            });
+        } else if (tabId === 'weather') {
+            // 기상 데이터 로드
+            $.ajax({
+                url: 'weatherDataServlet', // 기상 데이터 서블릿 URL
+                method: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    // 기상 테이블 업데이트
+                    updateWeatherTable(data);
+                },
+                error: function() {
+                    alert('기상 데이터를 로드할 수 없습니다.');
+                }
+            });
+        }
+    });
+
+    // 발전량 차트 업데이트 함수
+    function updateGenerationCharts(data) {
+        var chartContainerToday = echarts.init(document.getElementById('chart-container-today'));
+        var chartContainerTomorrow = echarts.init(document.getElementById('chart-container-tomorrow'));
+
+        var optionToday = {
+            title: { text: '오늘의 발전량' },
+            xAxis: { type: 'category', data: data.today.hours },
+            yAxis: { type: 'value' },
+            series: [{
+                data: data.today.values,
+                type: 'line'
+            }]
+        };
+
+        var optionTomorrow = {
+            title: { text: '내일의 발전량' },
+            xAxis: { type: 'category', data: data.tomorrow.hours },
+            yAxis: { type: 'value' },
+            series: [{
+                data: data.tomorrow.values,
+                type: 'line'
+            }]
+        };
+
+        chartContainerToday.setOption(optionToday);
+        chartContainerTomorrow.setOption(optionTomorrow);
+    }
+
+    // 기상 데이터 테이블 업데이트 함수
+    function updateWeatherTable(data) {
+        var tbody = $('#weather-data-body');
+        tbody.empty();
+
+        $.each(data, function(index, item) {
+            var row = '<tr>' +
+                '<td>' + item.hour + '</td>' +
+                '<td>' + item.powerGeneration + '</td>' +
+                '<td>' + item.cumulativePower + '</td>' +
+                '<td>' + item.solarRadiation + '</td>' +
+                '<td>' + item.temperature + '</td>' +
+                '<td>' + item.windSpeed + '</td>' +
+                '<td>' + item.hour + '</td>' +
+                '<td>' + item.powerGeneration + '</td>' +
+                '<td>' + item.cumulativePower + '</td>' +
+                '<td>' + item.solarRadiation + '</td>' +
+                '<td>' + item.temperature + '</td>' +
+                '<td>' + item.windSpeed + '</td>' +
+                '</tr>';
+
+            tbody.append(row);
+        });
+    }
+
+    // 탭을 표시하는 함수
+    function showTab(tabId) {
+        $('.tab-content').removeClass('active');
+        $('#' + tabId).addClass('active');
+        $('.tab-button').removeClass('active');
+        $('button[onclick="showTab(\'' + tabId + '\')"]').addClass('active');
+    }
+});
+

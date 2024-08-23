@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.smhrd.entity.TblMember;
@@ -125,6 +127,8 @@ public class MemberController {
 		session.setAttribute("msg", "회원탈퇴성공");
 		return "redirect:main";
 	}
+	
+	
 	// 발전지도화면 이동
 	@RequestMapping("/Go_PowerMap")
 	public String Go_PowerMap() {
@@ -138,9 +142,19 @@ public class MemberController {
         boolean isDuplicate = MemRepo.existsByMemId(memId);
         return ResponseEntity.ok(isDuplicate);
     }
+    
+    
+ // 발전지도화면 이동
+    @ResponseBody
+ 	@PostMapping(value = "/generationDataServlet", produces = "text/html; charset=UTF-8")
+ 	public String Go_generationDataServlet() {
+ 		
+ 		
+ 		
+ 		return "발전량데이터차트";
+ 	}
 
 
- 
     
     
 }
