@@ -6,26 +6,116 @@ $(document).ready(function() {
         $('#' + target).addClass('active');
         $('.tab-button').removeClass('active');
         $(this).addClass('active');
+
+        // 각 탭에 따른 차트 렌더링
+        if (target === 'generation') {
+            renderGenerationChart();
+        } else if (target === 'weather') {
+            renderWeatherChart();
+        }
     });
 
-    // 차트 초기화
-    function initCharts() {
+    // 발전량 차트 초기화 및 렌더링
+    function renderGenerationChart() {
         var chartToday = echarts.init(document.getElementById('chart-container-today'));
         var chartTomorrow = echarts.init(document.getElementById('chart-container-tomorrow'));
 
         var optionToday = {
-            // 차트 옵션 설정
+            title: {
+                text: '오늘 발전량'
+            },
+            xAxis: {
+                type: 'category',
+                data: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'] // 시간 데이터
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [{
+                data: [820, 932, 901, 934, 1290, 1330, 1320, 1500, 1450, 1430, 1420, 1350, 1250, 1150, 1100, 1080, 1040, 1000, 960, 920, 880, 850, 820, 790], // 발전량 데이터
+                type: 'bar',
+                itemStyle: {
+                    color: '#33C3FF' // 발전량 차트 색상 (빨강색)
+                }
+            }]
         };
+
         var optionTomorrow = {
-            // 차트 옵션 설정
+            title: {
+                text: '내일 발전량'
+            },
+            xAxis: {
+                type: 'category',
+                data: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'] // 시간 데이터
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [{
+                data: [620, 732, 701, 734, 1090, 1130, 1120, 1300, 1250, 1230, 1220, 1150, 1050, 950, 900, 880, 840, 800, 760, 720, 680, 650, 620, 590], // 발전량 데이터
+                type: 'bar',
+                itemStyle: {
+                    color: '#ff8f00' // 내일 발전량 차트 색상 (파랑색)
+                }
+            }]
         };
 
         chartToday.setOption(optionToday);
         chartTomorrow.setOption(optionTomorrow);
     }
 
-    initCharts();
-    
+    // 기상 차트 초기화 및 렌더링
+    function renderWeatherChart() {
+        var chartWeatherToday = echarts.init(document.getElementById('chart-container-weather-today'));
+        var chartWeatherTomorrow = echarts.init(document.getElementById('chart-container-weather-tomorrow'));
+
+        var optionWeatherToday = {
+            title: {
+                text: '오늘 기상'
+            },
+            xAxis: {
+                type: 'category',
+                data: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'] // 시간 데이터
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [{
+                data: [15, 14, 13, 13, 12, 12, 11, 12, 13, 14, 15, 16, 17, 18, 18, 19, 19, 18, 17, 16, 15, 14, 13, 12], // 기온 데이터
+                type: 'line',
+                itemStyle: {
+                    color: '#28A745' // 기상 차트 색상 (녹색)
+                }
+            }]
+        };
+
+        var optionWeatherTomorrow = {
+            title: {
+                text: '내일 기상'
+            },
+            xAxis: {
+                type: 'category',
+                data: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'] // 시간 데이터
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [{
+                data: [10, 12, 11, 11, 10, 10, 9, 10, 11, 12, 13, 14, 15, 16, 16, 17, 17, 16, 15, 14, 13, 12, 11, 10], // 기온 데이터
+                type: 'line',
+                itemStyle: {
+                    color: '#FFC107' // 내일 기상 차트 색상 (노랑색)
+                }
+            }]
+        };
+
+        chartWeatherToday.setOption(optionWeatherToday);
+        chartWeatherTomorrow.setOption(optionWeatherTomorrow);
+    }
+
+    // 초기 차트 렌더링
+    renderGenerationChart();
+
     // CSV 다운로드 버튼 클릭 시 CSV 생성 및 다운로드
     $("#excelDownload").click(function() {
         let filename = "generation_data.csv";
@@ -91,104 +181,3 @@ $(document).ready(function() {
         }
     }
 });
-
-$(document).ready(function() {
-    // 탭 클릭 시 이벤트 처리
-    $('.tab-button').on('click', function() {
-        var tabId = $(this).attr('onclick').split("'")[1];
-        showTab(tabId);
-
-        if (tabId === 'generation') {
-            // 발전량 데이터 로드
-            $.ajax({
-                url: 'generationDataServlet', // 발전량 데이터 서블릿 URL
-                method: 'POST',
-                dataType: 'json',
-                success: function(data) {
-                    // 차트 업데이트
-                    updateGenerationCharts(data);
-                },
-                error: function() {
-                    alert('발전량 데이터를 로드할 수 없습니다.');
-                }
-            });
-        } else if (tabId === 'weather') {
-            // 기상 데이터 로드
-            $.ajax({
-                url: 'weatherDataServlet', // 기상 데이터 서블릿 URL
-                method: 'GET',
-                dataType: 'json',
-                success: function(data) {
-                    // 기상 테이블 업데이트
-                    updateWeatherTable(data);
-                },
-                error: function() {
-                    alert('기상 데이터를 로드할 수 없습니다.');
-                }
-            });
-        }
-    });
-
-    // 발전량 차트 업데이트 함수
-    function updateGenerationCharts(data) {
-        var chartContainerToday = echarts.init(document.getElementById('chart-container-today'));
-        var chartContainerTomorrow = echarts.init(document.getElementById('chart-container-tomorrow'));
-
-        var optionToday = {
-            title: { text: '오늘의 발전량' },
-            xAxis: { type: 'category', data: data.today.hours },
-            yAxis: { type: 'value' },
-            series: [{
-                data: data.today.values,
-                type: 'line'
-            }]
-        };
-
-        var optionTomorrow = {
-            title: { text: '내일의 발전량' },
-            xAxis: { type: 'category', data: data.tomorrow.hours },
-            yAxis: { type: 'value' },
-            series: [{
-                data: data.tomorrow.values,
-                type: 'line'
-            }]
-        };
-
-        chartContainerToday.setOption(optionToday);
-        chartContainerTomorrow.setOption(optionTomorrow);
-    }
-
-    // 기상 데이터 테이블 업데이트 함수
-    function updateWeatherTable(data) {
-        var tbody = $('#weather-data-body');
-        tbody.empty();
-
-        $.each(data, function(index, item) {
-            var row = '<tr>' +
-                '<td>' + item.hour + '</td>' +
-                '<td>' + item.powerGeneration + '</td>' +
-                '<td>' + item.cumulativePower + '</td>' +
-                '<td>' + item.solarRadiation + '</td>' +
-                '<td>' + item.temperature + '</td>' +
-                '<td>' + item.windSpeed + '</td>' +
-                '<td>' + item.hour + '</td>' +
-                '<td>' + item.powerGeneration + '</td>' +
-                '<td>' + item.cumulativePower + '</td>' +
-                '<td>' + item.solarRadiation + '</td>' +
-                '<td>' + item.temperature + '</td>' +
-                '<td>' + item.windSpeed + '</td>' +
-                '</tr>';
-
-            tbody.append(row);
-        });
-    }
-
-    // 탭을 표시하는 함수
-    function showTab(tabId) {
-        $('.tab-content').removeClass('active');
-        $('#' + tabId).addClass('active');
-        $('.tab-button').removeClass('active');
-        $('button[onclick="showTab(\'' + tabId + '\')"]').addClass('active');
-    }
-});
-
