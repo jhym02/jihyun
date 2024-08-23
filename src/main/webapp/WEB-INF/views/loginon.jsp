@@ -234,7 +234,7 @@
 			</h2>
 			<form id="plant-form" action="plantRegister" method="post">
 				<label for="plant-name">발전소 이름</label> <input type="text"
-					id="plant-name" name="mPName" required><br>
+					id="plant-name" name="m_pName" required><br>
 				<br> <label for="plant-postcode">우편번호</label> <input
 					type="text" id="plant-postcode" name="zipCode" required><br>
 				<br> <label for="plant-address">발전소 주소</label> <input
@@ -242,6 +242,7 @@
 				<br> <label for="plant-detail">상세주소</label> <input type="text"
 					id="plant-detail" name="pDetail" required><br>
 				<br>
+					<input name="memId" value="${user.memId}" type="hidden">
 				<button type="submit">등록</button>
 			</form>
 		</div>

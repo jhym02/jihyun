@@ -4,12 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.smhrd.entity.TblMember;
 import com.smhrd.mapper.MemberMapper;
 import com.smhrd.repository.MemberRepository;
@@ -89,7 +85,7 @@ public class MemberController {
 	
 	// 로그인 후 내 발전소 페이지 이동
 	@RequestMapping("/loginon")
-	public String gologinon() {
+	public String gologinon(){
 		return "loginon";
 	}
 
