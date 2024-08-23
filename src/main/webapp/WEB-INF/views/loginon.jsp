@@ -195,19 +195,11 @@
             <h2>
                 발전소 등록 <i class="bi bi-brightness-high-fill"></i>
             </h2>
-            <form id="plant-form" action="plantRegister" method="post">
-                <label for="plant-name">발전소 이름</label> 
-                <input type="text" id="plant-name" name="mPName" required><br><br>
-                
-                <label for="plant-postcode">우편번호</label> 
-                <input type="text" id="plant-postcode" name="zipCode" required><br><br>
-                
-                <label for="plant-address">발전소 주소</label> 
-                <input type="text" id="plant-address" name="pAddress" required><br><br>
-                
-                <label for="plant-detail">상세주소</label> 
-                <input type="text" id="plant-detail" name="pDetail" required><br><br>
-                
+                        <form id="plant-form" action="plantRegister" method="post" >
+                <label for="plant-name">발전소 이름</label> <input type="text" id="plant-name" name="mPName" required><br><br>
+                <label for="plant-postcode">우편번호</label> <input type="text" id="plant-postcode" name="zipCode" required><br><br>
+                <label for="plant-address">발전소 주소</label> <input type="text" id="plant-address" name="pAddress" required><br><br>
+                <label for="plant-detail">상세주소</label> <input type="text" id="plant-detail" name="pDetail" required><br><br>
                 <button type="submit">등록</button>
             </form>
         </div>
