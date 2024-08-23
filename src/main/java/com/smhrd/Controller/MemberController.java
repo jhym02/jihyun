@@ -122,7 +122,6 @@ public class MemberController {
 		MemRepo.save(member);
 
 		session.removeAttribute("user");
-		session.setAttribute("msg", "회원탈퇴성공");
 		return "redirect:main";
 	}
 	// 발전지도화면 이동
