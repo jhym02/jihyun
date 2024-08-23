@@ -18,10 +18,7 @@
     <script src="assets/js/chart.js"></script>
 </head>
 <body>
-
-  
-
-  <jsp:include page="header.jsp" />
+    <jsp:include page="header.jsp" />
     <hr class="divider">
     <main>
         <div class="container">
@@ -60,7 +57,6 @@
                 <div>
                     <button id="excelDownload">Excel 다운로드</button>
                 </div>
-
                 <div id="generation" class="tab-content active">
                     <!-- 발전량 테이블 -->
                     <table class="chart-table">
@@ -82,8 +78,6 @@
                         </tbody>
                     </table>
                 </div>
-
-                        
 
                 <div id="weather" class="tab-content">
                     <!-- 기상 테이블 -->
