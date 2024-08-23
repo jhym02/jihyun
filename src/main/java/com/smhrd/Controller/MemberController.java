@@ -82,31 +82,12 @@ public class MemberController {
 		session.setAttribute("user_nick", nickname);
 
 		return "redirect:main";
-	}
-
-		
-		// rec 페이지
-		@RequestMapping("/data")
-		public String goDisplayData() {
-			return "data";
-		}
-		// smp 페이지
-		@RequestMapping("/smp")
-		public String goSmp() {
-			return "smp";
-		}
-		
+	}	
 		
 		
 	@RequestMapping("/loginon")
 	public String gologinon() {
 		return "loginon";
-	}
-
-	// 발전량데이터테이블
-	@RequestMapping("/dataTable")
-	public String goDataTable() {
-		return "dataTable";
 	}
 
 	// 마이페이지로 이동

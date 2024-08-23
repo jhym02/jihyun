@@ -55,6 +55,7 @@
 					<button class="tab-button" onclick="showTab('weather')">기상</button>
 				</div>
 
+<<<<<<< HEAD
 				<!-- CSV 다운로드 버튼 추가 -->
 				<div>
 					<button id="excelDownload">Excel 다운로드</button>
@@ -82,6 +83,13 @@
 						</tbody>
 					</table>
 				</div>
+=======
+                <!-- CSV 다운로드 버튼 추가 -->
+                <div>
+                    <button id="excelDownload">Excel 다운로드</button>
+                </div>
+  
+>>>>>>> 9ed6c5978ec4000ebbe2e2c3352f36445d8553c5
 
 				<div id="weather" class="tab-content">
 					<!-- 기상 테이블 -->
@@ -143,6 +151,7 @@
 		</div>
 	</main>
 
+<<<<<<< HEAD
 	<!-- 모달 구조 추가 -->
 	<div id="plant-modal" class="modal">
 		<div class="modal-content">
@@ -163,5 +172,82 @@
 		</div>
 	</div>
 	<jsp:include page="footer.jsp" />
+=======
+                <div id="weather" class="tab-content">
+                    <!-- 기상 테이블 -->
+                    <table id="data-table">
+                        <thead>
+                            <tr>
+                                <th colspan="6">오늘</th>
+                                <th colspan="6">내일</th>
+                            </tr>
+                            <tr>
+                                <th>시간</th>
+                                <th>발전량 (kW)</th>
+                                <th>누적 발전량 (kW)</th>
+                                <th>일사량 (W/m²)</th>
+                                <th>기온 (°C)</th>
+                                <th>풍속 (m/s)</th>
+                                <th>시간</th>
+                                <th>발전량 (kW)</th>
+                                <th>누적 발전량 (kW)</th>
+                                <th>일사량 (W/m²)</th>
+                                <th>기온 (°C)</th>
+                                <th>풍속 (m/s)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%
+                            List<HourlyData> todayDataList = (List<HourlyData>) request.getAttribute("todayDataList");
+                            List<HourlyData> tomorrowDataList = (List<HourlyData>) request.getAttribute("tomorrowDataList");
+                            String[] hours = new String[24];
+                            for (int i = 0; i < 24; i++) {
+                                hours[i] = String.format("%02d:00", i);
+                            }
+                            for (int i = 0; i < 24; i++) {
+                                HourlyData todayData = (todayDataList != null && i < todayDataList.size()) ? todayDataList.get(i) : null;
+                                HourlyData tomorrowData = (tomorrowDataList != null && i < tomorrowDataList.size()) ? tomorrowDataList.get(i) : null;
+                            %>
+                            <tr>
+                                <td><%=todayData != null ? todayData.getHour() : hours[i]%></td>
+                                <td><%=todayData != null ? todayData.getPowerGeneration() : ""%></td>
+                                <td><%=todayData != null ? todayData.getCumulativePower() : ""%></td>
+                                <td><%=todayData != null ? todayData.getSolarRadiation() : ""%></td>
+                                <td><%=todayData != null ? todayData.getTemperature() : ""%></td>
+                                <td><%=todayData != null ? todayData.getWindSpeed() : ""%></td>
+                                <td><%=tomorrowData != null ? tomorrowData.getHour() : hours[i]%></td>
+                                <td><%=tomorrowData != null ? tomorrowData.getPowerGeneration() : ""%></td>
+                                <td><%=tomorrowData != null ? tomorrowData.getCumulativePower() : ""%></td>
+                                <td><%=tomorrowData != null ? tomorrowData.getSolarRadiation() : ""%></td>
+                                <td><%=tomorrowData != null ? tomorrowData.getTemperature() : ""%></td>
+                                <td><%=tomorrowData != null ? tomorrowData.getWindSpeed() : ""%></td>
+                            </tr>
+                            <%
+                            }
+                            %>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- 모달 구조 추가 -->
+    <div id="plant-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>
+                발전소 등록 <i class="bi bi-brightness-high-fill"></i>
+            </h2>
+            <form id="plant-form">
+                <label for="plant-name">발전소 이름:</label> <input type="text" id="plant-name" name="plant-name" required><br><br>
+                <label for="plant-id">발전소 ID:</label> <input type="text" id="plant-id" name="plant-id" required><br><br>
+                <label for="plant-address">발전소 주소:</label> <input type="text" id="plant-address" name="plant-address" required><br><br>
+                <button type="submit">등록</button>
+            </form>
+        </div>
+    </div>
+    <jsp:include page="footer.jsp" />
+>>>>>>> 9ed6c5978ec4000ebbe2e2c3352f36445d8553c5
 </body>
 </html>
