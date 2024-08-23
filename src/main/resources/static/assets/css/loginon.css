@@ -30,7 +30,7 @@ main {
    margin-bottom: 10px;
    padding: 10px;
    border-radius: 5px;
-	border: 1px solid #ccc;
+   border: 1px solid #ccc;
 }
 
 .sidebar .plant p {
@@ -90,12 +90,7 @@ main {
 }
 
 i {
-   font-style: normal;
-   font-size: 25px;
-}
-
-.bi-person {
-   font-size: 20px;
+   font-size: 30px;
 }
 
 /* 탭 및 테이블 스타일링 */
@@ -122,6 +117,22 @@ i {
     border: 1px solid #dee2e6;
     border-radius: 0.25rem;
 }
+
+#excelDownload {
+    background-color: transparent; /* 배경색 투명 */
+    border: none;
+    cursor: pointer;
+    float: right;
+}
+
+.tab-content {
+    display: none; /* 기본적으로 모든 탭 콘텐츠 숨김 */
+}
+
+.tab-content.active {
+    display: block; /* 활성화된 탭 콘텐츠만 표시 */
+}
+
 
 table {
     width: 100%;
@@ -151,4 +162,3 @@ tbody tr:nth-child(even) {
 tbody tr:hover {
     background-color: #e9ecef;
 }
-
