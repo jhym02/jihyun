@@ -25,6 +25,7 @@ public class PlantController {
 	public String plantRegister(HttpSession session,TblPlant plant,TblLocation location) {
 		
 		PlantRepo.save(plant);
+		
 		LocationRepo.save(location);
 		
 		
