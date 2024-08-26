@@ -64,8 +64,8 @@
                     <table class="chart-table">
                         <thead>
                             <tr>
-                                <th>오늘 발전량</th>
-                                <th>내일 발전량</th>
+                                <th style="background-color: #3a4d76; color:white;">오늘 발전량</th>
+                                <th style="background-color: #3a4d76; color:white;">내일 발전량</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -113,13 +113,13 @@
                                 HourlyData tomorrowData = (tomorrowDataList != null && i < tomorrowDataList.size()) ? tomorrowDataList.get(i) : null;
                             %>
                             <tr>
-                                <td><%=todayData != null ? todayData.getHour() : hours[i]%></td>
+                                <td class="custom-background"><%=todayData != null ? todayData.getHour() : hours[i]%></td>
                                 <td><%=todayData != null ? todayData.getPowerGeneration() : ""%></td>
                                 <td><%=todayData != null ? todayData.getCumulativePower() : ""%></td>
                                 <td><%=todayData != null ? todayData.getSolarRadiation() : ""%></td>
                                 <td><%=todayData != null ? todayData.getTemperature() : ""%></td>
                                 <td><%=todayData != null ? todayData.getWindSpeed() : ""%></td>
-                                <td><%=tomorrowData != null ? tomorrowData.getHour() : hours[i]%></td>
+                                <td class="custom-background"><%=tomorrowData != null ? tomorrowData.getHour() : hours[i]%></td>
                                 <td><%=tomorrowData != null ? tomorrowData.getPowerGeneration() : ""%></td>
                                 <td><%=tomorrowData != null ? tomorrowData.getCumulativePower() : ""%></td>
                                 <td><%=tomorrowData != null ? tomorrowData.getSolarRadiation() : ""%></td>
@@ -139,8 +139,8 @@
                     <table class="chart-table">
                         <thead>
                             <tr>
-                                <th>오늘 기상</th>
-                                <th>내일 기상</th>
+                                <th style="background-color: #3a4d76; color:white;">오늘 기상</th>
+                                <th style="background-color: #3a4d76; color:white;">오늘 내일</th>
                             </tr>
                         </thead>
                         <tbody>

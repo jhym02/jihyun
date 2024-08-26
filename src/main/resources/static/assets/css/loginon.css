@@ -62,8 +62,7 @@ main {
    width: 80%;
    padding: 20px;
    background-color: white;
-   border-radius: 5px;
-   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+   border: 1px solid #dee2e6;
 }
 
 .plant-info {
@@ -84,18 +83,24 @@ main {
 .plant-info .info .item {
    background-color: #e6f4fa;
    padding: 20px;
-   border-radius: 5px;
+   margin: 1rem;
+   width: 50%;
+   border-radius: 10px;
    text-align: center;
-   width: 48%;
+   box-shadow: 4px 5px 2px #9ecde2; /* 그림자 효과 추가 */
 }
+
 
 i {
    font-size: 30px;
+   font-style: normal;
 }
 
 /* 탭 및 테이블 스타일링 */
 .tabs {
-    margin-bottom: 1rem;
+    margin-top: 2rem;
+    margin-left: 1rem;
+    
 }
 
 .tab-button {
@@ -104,7 +109,7 @@ i {
     padding: 0.5rem 1rem;
     cursor: pointer;
     border-radius: 0.25rem;
-    margin-right: 0.25rem;
+
 }
 
 .tab-button.active {
@@ -114,15 +119,14 @@ i {
 
 .tab-content {
     padding: 1rem;
-    border: 1px solid #dee2e6;
-    border-radius: 0.25rem;
 }
 
 #excelDownload {
-    background-color: transparent; /* 배경색 투명 */
+    background-color: transparent;
     border: none;
     cursor: pointer;
     float: right;
+    margin-right: 1rem;
 }
 
 .tab-content {
@@ -137,26 +141,25 @@ i {
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 1rem;
+
 }
 
 th, td {
-    border: 1px solid #dee2e6;
+    border: 1px solid #d3d3d3;
     padding: 0.75rem;
     text-align: center;
 }
 
+.custom-background {
+    background-color: #d4e4ff;
+}
+
 th {
-    background-color: #f8f9fa;
+    background-color: #eaedf2;
 }
 
 thead th {
-    background-color: #007bff;
-    color: #fff;
-}
-
-tbody tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: #eaedf2;
 }
 
 tbody tr:hover {
