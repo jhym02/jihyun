@@ -11,6 +11,9 @@ const returnType = 'JSON';  // JSON 데이터 반환
 // API 요청을 위한 엔드포인트 URL
 const apiUrl = `https://api.odcloud.kr/api/15065269/v1/uddi:ce8e9486-0b70-46af-8319-9108bef9d8b1?page=${pageNo}&perPage=${perPage}&returnType=${returnType}&serviceKey=${serviceKey}`;
 
+// 평균 발전량 데이터 API 요청 URL
+const avgPowerApiUrl = `http://apis.data.go.kr/B552115/PvAmountByLocHr?serviceKey=${serviceKey}&pageNo=1&numOfRows=30&dataType=json&tradeYmd=20230802`;
+
 // 지역 이름 매핑
 const regionMapping = {
     '강원도': '강원',
@@ -43,7 +46,8 @@ fetch('assets/json/koreaMap.json')
             tooltip: {
                 trigger: 'item',
                 formatter: function (params) {
-                    return `${params.name}<br>발전량: ${params.value || 0}`;
+                    const avgPower = avgPowerData[regionMapping[params.name]] || 0;
+                    return `${params.name}<br>평균 발전량: ${avgPower.toFixed(2)} MWh`; // 소수점 2자리까지 표시
                 }
             },
             series: [
@@ -84,6 +88,16 @@ fetch('assets/json/koreaMap.json')
             .catch(error => {
                 console.error('Error fetching data:', error);
             });
+
+        // 평균 발전량 API 요청
+        fetch(avgPowerApiUrl)
+            .then(response => response.json())
+            .then(data => {
+                processAvgPowerData(data);
+            })
+            .catch(error => {
+                console.error('Error fetching average power data:', error);
+            });
     })
     .catch(error => {
         console.error('Error loading map data:', error);
@@ -91,7 +105,25 @@ fetch('assets/json/koreaMap.json')
 
 // 데이터 처리 함수
 let regionData = {};
+let avgPowerData = {};
 
+// 평균 발전량 데이터 처리 함수
+function processAvgPowerData(data) {
+    const items = data.response.body.items.item; // JSON 구조에 맞게 'item' 필드 사용
+    avgPowerData = {}; // 데이터 초기화
+
+    items.forEach(item => {
+        const regionName = regionMapping[item.LOCATION.trim()] || item.LOCATION.trim(); // 지역 이름 매핑
+        // 평균 발전량을 소수점 2자리까지 변환
+        const avgPower = (parseFloat(item.AVG_AMOUNT) / 1000 || 0).toFixed(2); // kWh를 MWh로 변환 후 소수점 2자리까지 제한
+        avgPowerData[regionName] = parseFloat(avgPower); // 데이터 저장
+    });
+
+    // 지역별 데이터를 출력 (디버깅용)
+    console.log('Average Power Data:', avgPowerData);
+}
+
+// 데이터 처리 함수
 function processApiData(data) {
     const items = data.data;  // JSON 구조에 맞게 'data' 필드 사용
     regionData = {}; // 데이터 초기화
@@ -108,9 +140,9 @@ function processApiData(data) {
         // 시간에 맞게 인덱스를 찾고 태양광 발전량을 배열에 저장
         const hour = parseInt(item.거래시간, 10) - 1; // 거래시간을 인덱스로 변환 (1~24 시간)
         if (hour >= 0 && hour < 24) {
-            // 문자열로 되어 있는 발전량을 숫자로 변환
-            const solarPower = parseFloat(item.발전량) || 0;
-            regionData[regionName][hour] = solarPower;
+            // 문자열로 되어 있는 발전량을 숫자로 변환하고 kWh에서 MWh로 변환 (kWh / 1000 = MWh)
+            const solarPower = (parseFloat(item.발전량) / 1000 || 0).toFixed(2); // kWh를 MWh로 변환 후 소수점 2자리까지 제한
+            regionData[regionName][hour] = parseFloat(solarPower); // 다시 숫자로 변환
         }
     });
 
@@ -154,7 +186,7 @@ function updateBarChart(regionName) {
         yAxis: [
             {
                 type: 'value',
-                name: '태양광발전량(Mwh)', // y축 이름을 '태양광발전량(Mwh)'으로 설정
+                name: '태양광발전량(MWh)', // y축 이름을 '태양광발전량(MWh)'으로 설정
                 nameLocation: 'middle',
                 nameGap: 40
             }
