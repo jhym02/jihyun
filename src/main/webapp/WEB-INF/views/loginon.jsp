@@ -27,10 +27,13 @@
 		<div class="container">
 			<aside class="sidebar">
 				<div class="plant">
-					<p>발전소_01</p>
-					<p>전라남도 나주시 빛가람동</p>
-					<p>ID : 123456</p>
-					<button>삭제</button>
+					<c:forEach var="plant" items="${PlnatList}">
+						<p>${plant.mpName}</p>
+						<p>${plant.zipCode}</p>
+						<p>${plant.pAddress}</p>
+						<p>${plant.pDetail}</p>
+						<button>삭제</button>
+					</c:forEach>
 				</div>
 				<button class="add-plant">발전소 등록 +</button>
 			</aside>
@@ -191,7 +194,7 @@
 									.getAttribute("tomorrowWeatherDataList");
 							String[] hoursArray = new String[24];
 							for (int i = 0; i < 24; i++) {
-							    hoursArray[i] = String.format("%02d:00", i);
+								hoursArray[i] = String.format("%02d:00", i);
 							}
 							for (int i = 0; i < 24; i++) {
 								HourlyWeatherData todayData = (todayWeatherDataList != null && i < todayWeatherDataList.size())
@@ -234,15 +237,14 @@
 			</h2>
 			<form id="plant-form" action="plantRegister" method="post">
 				<label for="plant-name">발전소 이름</label> <input type="text"
-					id="plant-name" name="m_pName" required><br>
-				<br> <label for="plant-postcode">우편번호</label> <input
-					type="text" id="plant-postcode" name="zipCode" required><br>
-				<br> <label for="plant-address">발전소 주소</label> <input
-					type="text" id="plant-address" name="pAddress" required><br>
-				<br> <label for="plant-detail">상세주소</label> <input type="text"
-					id="plant-detail" name="pDetail" required><br>
-				<br>
-					<input name="memId" value="${user.memId}" type="hidden">
+					id="plant-name" name="m_pName" required><br> <br>
+				<label for="plant-postcode">우편번호</label> <input type="text"
+					id="plant-postcode" name="zipCode" required><br> <br>
+				<label for="plant-address">발전소 주소</label> <input type="text"
+					id="plant-address" name="pAddress" required><br> <br>
+				<label for="plant-detail">상세주소</label> <input type="text"
+					id="plant-detail" name="pDetail" required><br> <br>
+				<input name="memId" value="${user.memId}" type="hidden">
 				<button type="submit">등록</button>
 			</form>
 		</div>

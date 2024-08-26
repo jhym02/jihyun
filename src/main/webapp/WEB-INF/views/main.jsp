@@ -19,7 +19,7 @@
          <div class="buttons">
             <div class="button-container">
                <div class="button-text">내 발전소 현황</div>
-               <a href="loginon">
+               <a href="loginon?memId=${user.memId}">
                   <button type="button" class="btn_direct">바로가기</button>
                </a>
             </div>

@@ -1,13 +1,21 @@
 package com.smhrd.Controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.smhrd.entity.PlantListDTO;
+import com.smhrd.entity.TblLocation;
 import com.smhrd.entity.TblMember;
+import com.smhrd.entity.TblPlant;
 import com.smhrd.mapper.MemberMapper;
+import com.smhrd.mapper.PlantMapper;
 import com.smhrd.repository.MemberRepository;
 
 import jakarta.servlet.http.HttpSession;
@@ -20,7 +28,10 @@ public class MemberController {
 
 	@Autowired
 	MemberMapper Mapper;
-
+	
+	@Autowired
+	PlantMapper plantMapper;
+	
 	// 메인 페이지 호출
 	@RequestMapping("/main")
 	public String goMain() {
@@ -83,12 +94,21 @@ public class MemberController {
 		return "redirect:main";
 	}
 	
-	// 로그인 후 내 발전소 페이지 이동
+	// 로그인 후 내 발전소 페이지 이동, 내 발전소 리스트 가져오기
 	@RequestMapping("/loginon")
-	public String gologinon(){
+	public String gologinon(TblMember member,HttpSession session){
+		String memId = member.getMemId();
+		
+		System.out.println(memId);
+		
+		ArrayList<PlantListDTO> plantList = plantMapper.plantList(memId);
+		
+		session.setAttribute("PlnatList", plantList);
+		System.out.println(plantList);
+		
 		return "loginon";
 	}
-
+	
 	// 마이페이지로 이동
 	@RequestMapping("/Go_Mypage")
 	public String Go_Mypage() {
@@ -128,7 +148,7 @@ public class MemberController {
 	// 발전지도화면 이동
 	@RequestMapping("/Go_PowerMap")
 	public String Go_PowerMap() {
-
+		
 		return "powerMap";
 	}
 

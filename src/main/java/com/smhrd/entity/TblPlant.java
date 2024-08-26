@@ -14,5 +14,5 @@ public class TblPlant {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer plantId;
 	private String memId;
-	private String m_pName;
+	private String mpName;
 }
