@@ -30,10 +30,4 @@ public class MyController {
         model.addAttribute("hourlyDataList", hourlyDataList);
         return "dataTable";
     }
-<<<<<<< HEAD
 }
-=======
-}
-
-
->>>>>>> 289d1d548e8de7449252f6c54916f108d05ccf20
