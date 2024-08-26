@@ -14,9 +14,7 @@ public class TblLocation {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer locationId;
-	@OneToOne
-	@JoinColumn(name = "plant_id", referencedColumnName = "plantId")
-	private TblPlant plant;
+	private int plantId;
 	private String pAddress;
 	private String zipCode;
 	private String pDetail;

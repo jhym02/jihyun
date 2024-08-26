@@ -29,9 +29,13 @@ public class PlantController {
 		// tbl_plant 테이블에 받아온 데이터 저장
 		plantService.setPlantRepo(plant);
 		
+		String memId = plant.getMemId();
 		
+		int plantId= plantService.GetPlantId(memId);
 		
-		LocationRepo.save(location);
+		location.setPlantId(plantId);
+		
+		locationService.setPlantId(location);
 		
 		
 		return "redirect:loginon";

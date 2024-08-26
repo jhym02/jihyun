@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smhrd.mapper.PlantMapper">
+
+
+
+	<select id="plantId" resultType="Integer">
+		select plant_id
+		from tbl_plant
+		where mem_id=#{memId}
+		order by plant_id desc
+		limit 1
+	</select>
+
+
+
+
+
+
+
+</mapper>
