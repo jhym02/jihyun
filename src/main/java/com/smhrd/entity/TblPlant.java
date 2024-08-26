@@ -1,7 +1,6 @@
 package com.smhrd.entity;
 
 
-import org.hibernate.annotations.Generated;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

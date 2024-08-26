@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.smhrd.entity.TblLocation;
 import com.smhrd.entity.TblPlant;
 import com.smhrd.repository.LocationRepository;
-import com.smhrd.repository.PlantRepository;
+import com.smhrd.service.LocationService;
+import com.smhrd.service.PlantService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -16,16 +17,25 @@ import jakarta.servlet.http.HttpSession;
 public class PlantController {
 	
 	@Autowired
-	PlantRepository PlantRepo;
-	@Autowired
 	LocationRepository LocationRepo;
-	
+	@Autowired
+	LocationService locationService;
+	@Autowired
+	PlantService plantService;
 	// 발전소 등록
 	@PostMapping("/plantRegister")
 	public String plantRegister(HttpSession session,TblPlant plant,TblLocation location) {
 		
-		PlantRepo.save(plant);
-		LocationRepo.save(location);
+		// tbl_plant 테이블에 받아온 데이터 저장
+		plantService.setPlantRepo(plant);
+		
+		String memId = plant.getMemId();
+		
+		int plantId= plantService.GetPlantId(memId);
+		
+		location.setPlantId(plantId);
+		
+		locationService.setPlantId(location);
 		
 		
 		return "redirect:loginon";
