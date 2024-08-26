@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.smhrd.entity.TblLocation;
 import com.smhrd.entity.TblPlant;
 import com.smhrd.repository.LocationRepository;
-import com.smhrd.repository.PlantRepository;
+import com.smhrd.service.LocationService;
+import com.smhrd.service.PlantService;
+
 import jakarta.servlet.http.HttpSession;
 
 
@@ -15,16 +17,17 @@ import jakarta.servlet.http.HttpSession;
 public class PlantController {
 	
 	@Autowired
-	PlantRepository PlantRepo;
-	@Autowired
 	LocationRepository LocationRepo;
-	
+	@Autowired
+	LocationService locationService;
+	@Autowired
+	PlantService plantService;
 	// 발전소 등록
 	@PostMapping("/plantRegister")
 	public String plantRegister(HttpSession session,TblPlant plant,TblLocation location) {
 		
-		// service로 보내는 메소드 만들기
-		PlantRepo.save(plant);
+		// tbl_plant 테이블에 받아온 데이터 저장
+		plantService.setPlantRepo(plant);
 		
 		
 		
