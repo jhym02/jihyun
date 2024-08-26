@@ -93,17 +93,13 @@ main {
 
 i {
    font-size: 30px;
-<<<<<<< HEAD
    font-style: normal;
-=======
->>>>>>> 289d1d548e8de7449252f6c54916f108d05ccf20
 }
 
 /* 탭 및 테이블 스타일링 */
 .tabs {
     margin-top: 2rem;
-    margin-left: 1rem;
-    
+    margin-left: 1rem; 
 }
 
 .tab-button {
@@ -125,18 +121,11 @@ i {
 }
 
 #excelDownload {
-<<<<<<< HEAD
     background-color: transparent;
     border: none;
     cursor: pointer;
     float: right;
     margin-right: 1rem;
-=======
-    background-color: transparent; /* 배경색 투명 */
-    border: none;
-    cursor: pointer;
-    float: right;
->>>>>>> 289d1d548e8de7449252f6c54916f108d05ccf20
 }
 
 .tab-content {
@@ -158,6 +147,11 @@ th, td {
     border: 1px solid #d3d3d3;
     padding: 0.75rem;
     text-align: center;
+}
+.th-color {
+    background-color: #3a4d76; /* 배경색을 노란색으로 지정 */
+    color: white;
+    font-weight: bold;
 }
 
 .custom-background {
