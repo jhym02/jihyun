@@ -11,21 +11,28 @@
             background-color: #ccc;
             margin: 0;
         }
-        #map {
-            width: 800px;
-            height: 600px;
+        .wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
             margin: 20px auto;
-        }
-        #chart {
-            width: 800px;
-            height: 400px;
-            margin: 20px auto;
+            width: 1600px; /* 전체 너비를 1600px로 설정 */
         }
         .container {
             width: 800px;
-            margin: 10px auto;
             padding: 10px;
-            background-color: #98c9f4; 
+            background-color: #98c9f4;
+            display: flex;
+            justify-content: center;
+        }
+        #map {
+            width: 100%;
+            height: 600px;
+        }
+        #chart {
+            width: 800px;
+            height: 600px;
+            margin-left: 20px;
         }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
@@ -34,11 +41,12 @@
     <jsp:include page="header.jsp" />
     <hr class="divider">
     
-    <div class="container">
-        <div id="map"></div>
+    <div class="wrapper">
+        <div class="container">
+            <div id="map"></div>
+        </div>
+        <div id="chart"></div>
     </div>
-    
-    <div id="chart"></div> <!-- 바 차트를 위한 컨테이너 추가 -->
     
     <jsp:include page="footer.jsp" />
     <script src="assets/js/koreaMap.js"></script>
