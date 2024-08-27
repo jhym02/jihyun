@@ -14,6 +14,15 @@ $(document).ready(function() {
             renderWeatherChart();
         }
     });
+    
+     // 발전소 카드 클릭 시 색상 변경
+    $('.plant-card').on('click', function() {
+        // 기존의 활성화된 카드에서 active 클래스 제거
+        $('.plant-card').removeClass('active');
+        
+        // 클릭된 카드에 active 클래스 추가
+        $(this).addClass('active');
+    });
 
     // 발전량 차트 초기화 및 렌더링
     function renderGenerationChart() {

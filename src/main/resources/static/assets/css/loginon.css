@@ -23,39 +23,53 @@ main {
    padding: 10px;
    display: flex;
    flex-direction: column;
+   cursor: pointer;
+   transition: background-color 0.3s ease;
 }
 
-.sidebar .plant {
+.plant-list {
+   display: flex;
+   flex-direction: column;
+   gap: 10px;
+}
+
+.plant-card {
    background-color: white;
-   margin-bottom: 10px;
-   padding: 10px;
-   border-radius: 5px;
-   border: 1px solid #ccc;
+   border-radius: 10px;
+   padding: 20px;
+   border: 1px solid #878787;
 }
 
-.sidebar .plant p {
+.plant-card.active {
+   background-color: #fff8dc;
+}
+
+.plant-card p {
    margin: 5px 0;
 }
 
-.sidebar .plant button {
+.plant-card button {
    background-color: gray;
    color: white;
    border: none;
-   padding: 5px;
+   padding: 8px 15px;
    cursor: pointer;
-   border-radius: 5px;
-   width: 50px;
    float: right;
+   margin-top: 10px;
 }
 
-.sidebar .add-plant {
+.add-plant {
+   background-color: #f5f5f5;
    color: black;
    border: 1px dashed black;
    padding: 50px;
    cursor: pointer;
    border-radius: 5px;
    margin-top: 10px;
-   font-size: 20px;
+   font-size: 22px;
+}
+.add-plant:hover {
+	background-color: #ccc;
 }
 
 .main-content {
@@ -89,7 +103,6 @@ main {
    text-align: center;
    box-shadow: 4px 5px 2px #9ecde2; /* 그림자 효과 추가 */
 }
-
 
 i {
    font-size: 30px;
@@ -149,7 +162,7 @@ th, td {
     text-align: center;
 }
 .th-color {
-    background-color: #3a4d76; /* 배경색을 노란색으로 지정 */
+    background-color: #3a4d76;
     color: white;
     font-weight: bold;
 }
