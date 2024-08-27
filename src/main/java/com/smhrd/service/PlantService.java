@@ -20,14 +20,25 @@ public class PlantService {
 		PlantRepo.save(plant);
 	}
 	//DELETE 전용
-	
+	public void delPlant(TblPlant plant){
+		
+		PlantRepo.save(plant);
+	}
 	
 	//SELECT 전용
 	public int GetPlantId(String memId) {
 		
-		int plantId =(Integer)plantMapper.plantId(memId);
+		int GetPlantId =(Integer)plantMapper.plantId(memId);
 		
-		return plantId;
+		return GetPlantId;
+	}
+	
+	public TblPlant GetPlant(int plantId) {
+		
+		TblPlant plant=plantMapper.GetPlant(plantId);
+		
+		
+		return plant;
 	}
 		
 }
