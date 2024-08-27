@@ -10,7 +10,7 @@
    border: 0;
    height: 1px;
    background-color: #ccc;
-   margin: 0;
+   margin: 1px;
 }
 
 .image-container {
@@ -68,7 +68,7 @@
     border: 1px solid #333333;
     margin: 0 5px;
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 
