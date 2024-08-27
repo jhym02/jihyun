@@ -39,16 +39,28 @@
             <div class="plant-info">
                <h3>발전소_01</h3>
                <div class="info">
+                  <%
+                     double smpValue = 131021; // 예시 SMP 값 (원)
+                     double generationHours = 5.25; // 예시 발전 시간 (시간)
+
+                     // SMP 수익과 발전 시간을 곱하여 총 수익을 계산
+                     double totalEarnings = smpValue * generationHours;
+
+                     // 포맷팅: 천 단위 구분 기호와 소수점 두 자리
+                     String formattedSmpValue = String.format("%,.0f", smpValue);
+                     String formattedTotalEarnings = String.format("%,.0f", totalEarnings);
+                  %>
                   <div class="item">
                      <p>오늘의 SMP 수익</p>
-                     <i class="bi bi-coin"> 131,021원</i>
+                     <i class="bi bi-coin"> <%=formattedTotalEarnings%>원</i>
                   </div>
                   <div class="item">
                      <p>오늘의 발전 시간</p>
-                     <i class="bi bi-clock"> 5.25시간</i>
+                     <i class="bi bi-clock"> <%=generationHours%>시간</i>
                   </div>
                </div>
             </div>
+
 
             <!-- 탭 추가 -->
             <div class="tabs">

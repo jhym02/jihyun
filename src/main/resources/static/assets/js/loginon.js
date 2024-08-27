@@ -21,9 +21,6 @@ $(document).ready(function() {
         var chartTomorrow = echarts.init(document.getElementById('chart-container-tomorrow'));
 
         var optionToday = {
-            title: {
-                text: '오늘 발전량'
-            },
             xAxis: {
                 type: 'category',
                 data: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'] // 시간 데이터
@@ -41,9 +38,6 @@ $(document).ready(function() {
         };
 
         var optionTomorrow = {
-            title: {
-                text: '내일 발전량'
-            },
             xAxis: {
                 type: 'category',
                 data: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'] // 시간 데이터
@@ -70,9 +64,6 @@ $(document).ready(function() {
         var chartWeatherTomorrow = echarts.init(document.getElementById('chart-container-weather-tomorrow'));
 
         var optionWeatherToday = {
-            title: {
-                text: '오늘 기상'
-            },
             xAxis: {
                 type: 'category',
                 data: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'] // 시간 데이터
@@ -90,9 +81,6 @@ $(document).ready(function() {
         };
 
         var optionWeatherTomorrow = {
-            title: {
-                text: '내일 기상'
-            },
             xAxis: {
                 type: 'category',
                 data: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'] // 시간 데이터
