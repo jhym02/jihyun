@@ -1,7 +1,5 @@
-<%@ page
-   import="java.io.BufferedReader, java.io.InputStreamReader, java.io.IOException, java.net.HttpURLConnection, java.net.URL, java.io.StringReader, javax.xml.parsers.DocumentBuilder, javax.xml.parsers.DocumentBuilderFactory, org.w3c.dom.Document, org.w3c.dom.Element, org.w3c.dom.NodeList, org.xml.sax.InputSource"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+<%@ page import="java.io.BufferedReader, java.io.InputStreamReader, java.io.IOException, java.net.HttpURLConnection, java.net.URL, java.io.StringReader, javax.xml.parsers.DocumentBuilder, javax.xml.parsers.DocumentBuilderFactory, org.w3c.dom.Document, org.w3c.dom.Element, org.w3c.dom.NodeList, org.xml.sax.InputSource"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -10,8 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SolaPower</title>
 <link rel="stylesheet" href="assets/css/main.css">
-<link rel="stylesheet"
-   href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 </head>
 <body>
 
@@ -173,10 +170,26 @@
          <!-- REC 값이 표시되는 부분 -->
       </div>
    </main>
-   <script
-      src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.all.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.all.min.js"></script>
+   
+   <script type="text/javascript">
+   	var ms = "${sessionScope.ms}";
+   	if (ms) {
+      	Swal.fire({
+         	text : ms,
+         	icon : "warning",
+         	confirmButtonColor : "#6DD66D", // 확인 버튼 색상 설정
+         	confirmButtonText : "로그인 페이지로 이동"
+      	}).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = 'Go_Login'; // 로그인 페이지로 이동
+            }
+        });
+        <% session.removeAttribute("ms"); %>
+    }
+   </script>
    <script>
-      // 세션에서 메시지를 받아와서 출력하고, 세션에서 삭제
+	// 세션에서 메시지를 받아와서 출력하고, 세션에서 삭제
       var msg = "${sessionScope.msg}";
       if (msg) {
          Swal.fire({
@@ -186,10 +199,14 @@
             confirmButtonColor : "#6DD66D", // 확인 버튼 색상 설정
             confirmButtonText : "확인"
          });
+        
    <%session.removeAttribute("msg");%>
    <!-- 메시지 출력 후 세션에서 제거 -->
-      }
+   	}
+     
    </script>
+   
+      
    <jsp:include page="footer.jsp" />
 </body>
 </html>

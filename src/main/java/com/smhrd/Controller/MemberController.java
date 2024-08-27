@@ -1,11 +1,15 @@
 package com.smhrd.Controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.smhrd.entity.TblMember;
@@ -13,6 +17,7 @@ import com.smhrd.mapper.MemberMapper;
 import com.smhrd.repository.MemberRepository;
 
 import jakarta.servlet.http.HttpSession;
+import jakarta.websocket.Session;
 @Controller
 public class MemberController {
 
@@ -57,10 +62,11 @@ public class MemberController {
 	public String Real_Join(TblMember member) {
 
 		MemRepo.save(member);
-
+		
 		return "redirect:main";
 	}
 
+	
 	// 로그인 화면 이동
 	@RequestMapping("/Go_Login")
 	public String Go_Login() {
@@ -85,8 +91,15 @@ public class MemberController {
 	}
 
 	@RequestMapping("/loginon")
-	public String gologinon() {
+	public String gologinon(HttpSession session) {
+		Object a=session.getAttribute("user");
+		if (a==null) {
+			session.setAttribute("ms", "로그인 후 사용가능합니다.");
+			return "redirect:/main";
+		}else 
+		{
 		return "loginon";
+		}
 	}
 
 	// 마이페이지로 이동
@@ -139,7 +152,5 @@ public class MemberController {
     }
 
 
- 
-    
     
 }
