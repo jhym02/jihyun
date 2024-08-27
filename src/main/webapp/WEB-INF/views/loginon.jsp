@@ -28,10 +28,10 @@
 			<aside class="sidebar">
 				<div class="plant">
 					<c:forEach var="plant" items="${PlnatList}">
-						<p>${plant.mpName}</p>
-						<p>${plant.zipCode}</p>
-						<p>${plant.pAddress}</p>
-						<p>${plant.pDetail}</p>
+						<p>${plant.mp_name}</p>
+						<p>${plant.zip_code}</p>
+						<p>${plant.p_address}</p>
+						<p>${plant.p_detail}</p>
 						<button>삭제</button>
 					</c:forEach>
 				</div>

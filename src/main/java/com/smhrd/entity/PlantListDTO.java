@@ -5,8 +5,8 @@ import lombok.Data;
 @Data
 public class PlantListDTO {
 
-	private String pAdress;
-	private String zipCode;
-	private String pDetail;
-	private String mpName;	
+	private String p_address;
+	private String zip_code;
+	private String p_detail;
+	private String mp_name;	
 }
