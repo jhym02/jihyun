@@ -27,14 +27,18 @@
       <div class="container">
          <aside class="sidebar">
             <div class="plant">
-               <p>발전소_01</p>
-               <p>전라남도 나주시 빛가람동</p>
-               <p>ID : 123456</p>
-               <button>삭제</button>
+               <c:forEach var="plant" items="${PlnatList}">
+                  <c:if test="${'N' eq plant.mp_del}">
+                     <p>${plant.mp_name}</p>
+                     <p>${plant.zip_code}</p>
+                     <p>${plant.p_address}</p>
+                     <p>${plant.p_detail}</p>
+                     <a href="plantDel?plantId=${plant.plant_id}"><button>삭제</button></a>
+                  </c:if>
+               </c:forEach>
             </div>
             <button class="add-plant">발전소 등록 +</button>
          </aside>
-
          <section class="main-content">
             <div class="plant-info">
                <h3>발전소_01</h3>
@@ -99,7 +103,7 @@
                <!-- 발전량 표 -->
                <table id="data-table">
                   <thead>
-                  	<tr>
+                     <tr>
                         <th colspan="6">오늘</th>
                         <th colspan="6">내일</th>
                      </tr>
@@ -151,7 +155,27 @@
                   </tbody>
                </table>
             </div>
-
+   <!-- 모달 구조 추가 -->
+   <div id="plant-modal" class="modal">
+      <div class="modal-content">
+         <span class="close">&times;</span>
+         <h2>
+            발전소 등록 <i class="bi bi-brightness-high-fill"></i>
+         </h2>
+         <form id="plant-form" action="plantRegister" method="post">
+            <label for="plant-name">발전소 이름</label> <input type="text"
+               id="plant-name" name="mpName" required><br> <br>
+            <label for="plant-postcode">우편번호</label> <input type="text"
+               id="plant-postcode" name="zipCode" required><br> <br>
+            <label for="plant-address">발전소 주소</label> <input type="text"
+               id="plant-address" name="pAddress" required><br> <br>
+            <label for="plant-detail">상세주소</label> <input type="text"
+               id="plant-detail" name="pDetail" required><br> <br>
+            <input name="memId" value="${user.memId}" type="hidden">
+            <button type="submit">등록</button>
+         </form>
+      </div>
+   </div>
             <!-- 기상 탭 콘텐츠 -->
             <div id="weather" class="tab-content">
                <!-- 기상 차트 -->
@@ -240,28 +264,6 @@
          </section>
       </div>
    </main>
-
-   <!-- 모달 구조 추가 -->
-   <div id="plant-modal" class="modal">
-      <div class="modal-content">
-         <span class="close">&times;</span>
-         <h2>
-            발전소 등록 <i class="bi bi-brightness-high-fill"></i>
-         </h2>
-         <form id="plant-form" action="plantRegister" method="post">
-            <label for="plant-name">발전소 이름</label> <input type="text"
-               id="plant-name" name="mPName" required><br>
-            <br> <label for="plant-postcode">우편번호</label> <input
-               type="text" id="plant-postcode" name="zipCode" required><br>
-            <br> <label for="plant-address">발전소 주소</label> <input
-               type="text" id="plant-address" name="pAddress" required><br>
-            <br> <label for="plant-detail">상세주소</label> <input type="text"
-               id="plant-detail" name="pDetail" required><br>
-            <br>
-            <button type="submit">등록</button>
-         </form>
-      </div>
-   </div>
-   <jsp:include page="footer.jsp" />
+	<jsp:include page="footer.jsp" />
 </body>
 </html>

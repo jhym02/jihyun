@@ -53,12 +53,12 @@ fetch('assets/json/koreaMap.json')
                    type: 'map',
                             map: 'korea',
                             label: {
-				                show: true, // 라벨 표시
-				                color: '#000000',
-				                fontSize: 16,
-				                fontWeight: 'bold', 
-                				hideOverlap: true // 라벨이 겹치면 자동으로 숨기기
-				            },
+                            show: true, // 라벨 표시
+                            color: '#000000',
+                            fontSize: 16,
+                            fontWeight: 'bold', 
+                            hideOverlap: true // 라벨이 겹치면 자동으로 숨기기
+                        },
                             itemStyle: {
                                 areaColor: '#cccccc',
                                 borderColor: '#333333'
@@ -66,17 +66,17 @@ fetch('assets/json/koreaMap.json')
                             emphasis: {
                                 label: {
                                     show: true,
-									color: '#000000',
-                    				fontSize: 18, 
+                           color: '#000000',
+                                fontSize: 18, 
                                 },
-								itemStyle: {
-				                    borderColor: '#565656', 
-				                    borderWidth: 2
-				                }
+                        itemStyle: {
+                                borderColor: '#565656', 
+                                borderWidth: 2
+                            }
                             },
-							 labelLayout: {
-				                hideOverlap: true // 겹치는 라벨 숨기기
-				            }
+                      labelLayout: {
+                            hideOverlap: true // 겹치는 라벨 숨기기
+                        }
                 }
             ]
         };
@@ -148,15 +148,15 @@ function updateBarChart(regionName) {
     const formattedData = (regionData[regionName] || Array(hours.length).fill(0)).map(value => value.toFixed(2));
 
     const barOption = {
-		title: {
-		            text: `${regionName} 시간대별 발전량`,
-		            left: 'left',
-		            top: 'top', 
-		            textStyle: {
-		                fontSize: 22, 
-		                fontWeight: 'bold', 
-		                color: '#00479d'
-		            }
+      title: {
+                  text: `${regionName} 시간대별 발전량`,
+                  left: 'left',
+                  top: 'top', 
+                  textStyle: {
+                      fontSize: 22, 
+                      fontWeight: 'bold', 
+                      color: '#00479d'
+                  }
       },
         tooltip: {
             trigger: 'axis',
@@ -196,9 +196,9 @@ function updateBarChart(regionName) {
                 type: 'bar',
                 barWidth: '60%',
                 data: formattedData, // 소수점 두 자리로 포맷된 데이터 사용
-				itemStyle: {
-		                    color: '#f1af09' // 막대 색상 설정 (여기서는 파란색)
-		                }
+            itemStyle: {
+                          color: '#f1af09' // 막대 색상 설정 (여기서는 파란색)
+                      }
             }
         ]
     };
