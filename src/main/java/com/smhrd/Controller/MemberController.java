@@ -1,8 +1,8 @@
-package com.smhrd.Controller;
+ package com.smhrd.Controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -11,13 +11,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
+import com.smhrd.entity.PlantListDTO;
+import com.smhrd.entity.TblLocation;
 import com.smhrd.entity.TblMember;
+import com.smhrd.entity.TblPlant;
 import com.smhrd.mapper.MemberMapper;
+import com.smhrd.mapper.PlantMapper;
 import com.smhrd.repository.MemberRepository;
 
 import jakarta.servlet.http.HttpSession;
 import jakarta.websocket.Session;
+
 @Controller
 public class MemberController {
 
@@ -26,29 +30,32 @@ public class MemberController {
 
 	@Autowired
 	MemberMapper Mapper;
-
+	
+	@Autowired
+	PlantMapper plantMapper;
+	
 	// 메인 페이지 호출
 	@RequestMapping("/main")
 	public String goMain() {
 		return "main";
 	}
 
-	   // 로그인
-	   @RequestMapping("/Real_Login")
-	   public String Real_Login(String memId, String memPw, HttpSession session) {
+	// 로그인
+	@RequestMapping("/Real_Login")
+	public String Real_Login(String memId, String memPw, HttpSession session) {
 
-	      TblMember member = MemRepo.findByMemIdAndMemPw(memId, memPw);
-	      
-	      if (member != null && member.getMemDel().equals("N")) {
-	         session.setAttribute("user", member);
-	         session.setAttribute("msg", "로그인 성공했습니다.");
+		TblMember member = MemRepo.findByMemIdAndMemPw(memId, memPw);
 
-	      } else {
-	         session.setAttribute("msg", "로그인 실패했습니다. 다시 시도해주세요.");
-	         return "Login";
-	      }
-	      return "redirect:main";
-	   }
+		if (member != null && member.getMemDel().equals("N")) {
+			session.setAttribute("user", member);
+			session.setAttribute("msg", "로그인 성공했습니다.");
+
+		} else {
+			session.setAttribute("msg", "로그인 실패했습니다. 다시 시도해주세요.");
+			return "Login";
+		}
+		return "redirect:main";
+	}
 
 	// 회원가입 화면 이동
 	@RequestMapping("/Go_Real_Join")
@@ -89,19 +96,28 @@ public class MemberController {
 
 		return "redirect:main";
 	}
-
+	
+	// 로그인 후 내 발전소 페이지 이동, 내 발전소 리스트 가져오기
 	@RequestMapping("/loginon")
-	public String gologinon(HttpSession session) {
+	public String gologinon(TblMember member,HttpSession session) {
 		Object a=session.getAttribute("user");
 		if (a==null) {
 			session.setAttribute("ms", "로그인 후 사용가능합니다.");
 			return "redirect:/main";
 		}else 
 		{
+		String memId = member.getMemId();
+		
+		System.out.println(memId);
+		
+		ArrayList<PlantListDTO> plantList = plantMapper.plantList(memId);
+		
+		session.setAttribute("PlnatList", plantList);
+		System.out.println(plantList);
 		return "loginon";
 		}
 	}
-
+	
 	// 마이페이지로 이동
 	@RequestMapping("/Go_Mypage")
 	public String Go_Mypage() {
@@ -118,9 +134,9 @@ public class MemberController {
 		member.setMemId(user.getMemId());
 
 		MemRepo.save(member);
-		
+
 		session.setAttribute("user", member);
-		
+
 		return "redirect:main";
 	}
 
@@ -137,20 +153,19 @@ public class MemberController {
 		session.removeAttribute("user");
 		return "redirect:main";
 	}
+
 	// 발전지도화면 이동
 	@RequestMapping("/Go_PowerMap")
 	public String Go_PowerMap() {
-
+		
 		return "powerMap";
 	}
 
 	// 아이디 중복 체크
-    @GetMapping("/idCheck")
-    public ResponseEntity<Boolean> checkId(@RequestParam("memId") String memId) {
-        boolean isDuplicate = MemRepo.existsByMemId(memId);
-        return ResponseEntity.ok(isDuplicate);
-    }
+	@GetMapping("/idCheck")
+	public ResponseEntity<Boolean> checkId(@RequestParam("memId") String memId) {
+		boolean isDuplicate = MemRepo.existsByMemId(memId);
+		return ResponseEntity.ok(isDuplicate);
+	}
 
-
-    
 }

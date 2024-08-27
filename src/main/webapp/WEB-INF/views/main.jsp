@@ -1,6 +1,6 @@
 <%@ page import="java.io.BufferedReader, java.io.InputStreamReader, java.io.IOException, java.net.HttpURLConnection, java.net.URL, java.io.StringReader, javax.xml.parsers.DocumentBuilder, javax.xml.parsers.DocumentBuilderFactory, org.w3c.dom.Document, org.w3c.dom.Element, org.w3c.dom.NodeList, org.xml.sax.InputSource"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -11,17 +11,15 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 </head>
 <body>
-
    <!-- header.jsp 파일 포함 -->
    <jsp:include page="header.jsp" />
-
    <main>
       <div class="main-content">
          <h1>인공지능(AI)을 활용하여 최적의 태양광 발전소 운영을 위한 발전량 예측 서비스를 제공받을 수 있습니다.</h1>
          <div class="buttons">
             <div class="button-container">
                <div class="button-text">내 발전소 현황</div>
-               <a href="loginon">
+               <a href="loginon?memId=${user.memId}">
                   <button type="button" class="btn_direct">바로가기</button>
                </a>
             </div>
