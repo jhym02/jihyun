@@ -179,6 +179,14 @@
             confirmButtonColor : "#6DD66D", // 확인 버튼 색상 설정
             confirmButtonText : "로그인 페이지로 이동"
          }).then((result) => {
+   	var ms = "${sessionScope.ms}";
+   	if (ms) {
+      	Swal.fire({
+         	text : ms,
+         	icon : "warning",
+         	confirmButtonColor : "#6DD66D", // 확인 버튼 색상 설정
+         	confirmButtonText : "로그인 페이지로 이동"
+      	}).then((result) => {
             if (result.isConfirmed) {
                 window.location.href = 'Go_Login'; // 로그인 페이지로 이동
             }
@@ -188,6 +196,7 @@
    </script>
    <script>
    // 세션에서 메시지를 받아와서 출력하고, 세션에서 삭제
+	// 세션에서 메시지를 받아와서 출력하고, 세션에서 삭제
       var msg = "${sessionScope.msg}";
       if (msg) {
          Swal.fire({
@@ -201,6 +210,7 @@
    <%session.removeAttribute("msg");%>
    <!-- 메시지 출력 후 세션에서 제거 -->
       }
+   	}
      
    </script>
    

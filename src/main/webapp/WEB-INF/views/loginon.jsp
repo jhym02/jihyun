@@ -34,6 +34,22 @@
             </div>
             <button class="add-plant">발전소 등록 +</button>
          </aside>
+	<jsp:include page="header.jsp" />
+	<hr class="divider">
+	<main>
+		<div class="container">
+			<aside class="sidebar">
+				<div class="plant">
+					<c:forEach var="plant" items="${PlnatList}">
+						<p>${plant.mpName}</p>
+						<p>${plant.zipCode}</p>
+						<p>${plant.pAddress}</p>
+						<p>${plant.pDetail}</p>
+						<button>삭제</button>
+					</c:forEach>
+				</div>
+				<button class="add-plant">발전소 등록 +</button>
+			</aside>
 
          <section class="main-content">
             <div class="plant-info">
@@ -251,5 +267,69 @@
       </div>
    </div>
    <jsp:include page="footer.jsp" />
+						<!-- 시간별 기상 데이터 -->
+						<tbody>
+							<%
+							List<HourlyWeatherData> todayWeatherDataList = (List<HourlyWeatherData>) request.getAttribute("todayWeatherDataList");
+							List<HourlyWeatherData> tomorrowWeatherDataList = (List<HourlyWeatherData>) request
+									.getAttribute("tomorrowWeatherDataList");
+							String[] hoursArray = new String[24];
+							for (int i = 0; i < 24; i++) {
+								hoursArray[i] = String.format("%02d:00", i);
+							}
+							for (int i = 0; i < 24; i++) {
+								HourlyWeatherData todayData = (todayWeatherDataList != null && i < todayWeatherDataList.size())
+								? todayWeatherDataList.get(i)
+								: null;
+								HourlyWeatherData tomorrowData = (tomorrowWeatherDataList != null && i < tomorrowWeatherDataList.size())
+								? tomorrowWeatherDataList.get(i)
+								: null;
+							%>
+							<tr>
+								<td><%=todayData != null ? todayData.getHour() : hours[i]%></td>
+								<td><%=todayData != null ? todayData.getSolarRadiation() : ""%></td>
+								<td><%=todayData != null ? todayData.getTemperature() : ""%></td>
+								<td><%=todayData != null ? todayData.getWindSpeed() : ""%></td>
+								<td><%=todayData != null ? todayData.getHumidity() : ""%></td>
+								<td><%=todayData != null ? todayData.getPressure() : ""%></td>
+								<td><%=tomorrowData != null ? tomorrowData.getHour() : hours[i]%></td>
+								<td><%=tomorrowData != null ? tomorrowData.getSolarRadiation() : ""%></td>
+								<td><%=tomorrowData != null ? tomorrowData.getTemperature() : ""%></td>
+								<td><%=tomorrowData != null ? tomorrowData.getWindSpeed() : ""%></td>
+								<td><%=tomorrowData != null ? tomorrowData.getHumidity() : ""%></td>
+								<td><%=tomorrowData != null ? tomorrowData.getPressure() : ""%></td>
+							</tr>
+							<%
+							}
+							%>
+						</tbody>
+					</table>
+				</div>
+			</section>
+		</div>
+	</main>
+
+	<!-- 모달 구조 추가 -->
+	<div id="plant-modal" class="modal">
+		<div class="modal-content">
+			<span class="close">&times;</span>
+			<h2>
+				발전소 등록 <i class="bi bi-brightness-high-fill"></i>
+			</h2>
+			<form id="plant-form" action="plantRegister" method="post">
+				<label for="plant-name">발전소 이름</label> <input type="text"
+					id="plant-name" name="m_pName" required><br> <br>
+				<label for="plant-postcode">우편번호</label> <input type="text"
+					id="plant-postcode" name="zipCode" required><br> <br>
+				<label for="plant-address">발전소 주소</label> <input type="text"
+					id="plant-address" name="pAddress" required><br> <br>
+				<label for="plant-detail">상세주소</label> <input type="text"
+					id="plant-detail" name="pDetail" required><br> <br>
+				<input name="memId" value="${user.memId}" type="hidden">
+				<button type="submit">등록</button>
+			</form>
+		</div>
+	</div>
+	<jsp:include page="footer.jsp" />
 </body>
 </html>
