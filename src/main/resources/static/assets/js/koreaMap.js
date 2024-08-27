@@ -43,8 +43,9 @@ fetch('assets/json/koreaMap.json')
             tooltip: {
                 trigger: 'item',
                 formatter: function(params) {
-                    const avgPower = avgPowerData[regionMapping[params.name]] || 0;
-                    return `${params.name}<br>평균 발전량: ${avgPower.toFixed(2)} MWh`; // 14시 발전량 표시
+                    const regionName = regionMapping[params.name] || params.name;
+                    const avgPower = avgPowerData[regionName] || 0;
+                    return `${params.name}<br>평균 발전량: ${avgPower} MWh`; // 소수점 자리를 직접 지정하지 않음
                 }
             },
             series: [
@@ -83,11 +84,9 @@ fetch('assets/json/koreaMap.json')
                 processApiData(data);
             })
             .catch(error => {
-                console.error('Error fetching data:', error);
             });
     })
     .catch(error => {
-        console.error('Error loading map data:', error);
     });
 
 // 데이터 처리 함수
@@ -101,10 +100,9 @@ function processApiData(data) {
     avgPowerData = {}; // 평균 발전량 데이터 초기화
 
     items.forEach(item => {
-        console.log('Processing item:', item);  // 각 항목을 출력하여 디버그
 
         // 지역 이름을 매핑된 이름으로 변환
-        const regionName = regionMapping[item.지역.trim()] || item.지역.trim(); // 매핑되지 않은 경우 원래 이름 사용
+        const regionName = regionMapping[item.지역.trim()] || item.지역.trim();
 
         if (!regionData[regionName]) {
             regionData[regionName] = Array(24).fill(0); // 24시간 데이터 초기화
@@ -112,29 +110,29 @@ function processApiData(data) {
         // 시간에 맞게 인덱스를 찾고 태양광 발전량을 배열에 저장
         const hour = parseInt(item.거래시간, 10) - 1; // 거래시간을 인덱스로 변환 (1~24 시간)
         if (hour >= 0 && hour < 24) {
-            // 문자열로 되어 있는 발전량을 숫자로 변환하고 kWh에서 MWh로 변환 (kWh / 1000 = MWh)
-            const solarPower = (parseFloat(item.발전량) / 1000 || 0).toFixed(2); // kWh를 MWh로 변환 후 소수점 2자리까지 제한
-            regionData[regionName][hour] = parseFloat(solarPower); // 다시 숫자로 변환
-        }
-
-        // 14시의 발전량을 평균 발전량 데이터에 저장
-        if (hour === 13) { // 14시의 데이터는 인덱스 13에 저장됨
-            avgPowerData[regionName] = (parseFloat(item.발전량) / 1000 || 0).toFixed(2);
+            const solarPower = parseFloat(item.발전량) / 1000; // kWh를 MWh로 변환
+            if (!isNaN(solarPower)) {
+                regionData[regionName][hour] += solarPower; // 발전량을 배열에 추가
+            }
         }
     });
 
-    // 지역별 데이터를 출력 (디버깅용)
-    console.log('Region Data:', regionData);
-    console.log('Average Power Data:', avgPowerData);
+    // 평균 발전량 계산
+    for (const [regionName, data] of Object.entries(regionData)) {
+        const totalPower = data.reduce((sum, value) => sum + value, 0);
+        avgPowerData[regionName] = (totalPower / 24).toFixed(2); // 평균 발전량 계산
+    }
+
 }
 
 // 차트 업데이트 함수
 function updateBarChart(regionName) {
-    console.log('Updating chart for region:', regionName);
-    console.log('Data for region:', regionData[regionName]);
 
     const hours = ['1시', '2시', '3시', '4시', '5시', '6시', '7시', '8시', '9시', '10시', '11시', '12시', 
         '13시', '14시', '15시', '16시', '17시', '18시', '19시', '20시', '21시', '22시', '23시', '24시'];
+
+    // 데이터 소수점 두 자리까지 포맷
+    const formattedData = (regionData[regionName] || Array(hours.length).fill(0)).map(value => value.toFixed(2));
 
     const barOption = {
         tooltip: {
@@ -174,7 +172,7 @@ function updateBarChart(regionName) {
                 name: regionName,
                 type: 'bar',
                 barWidth: '60%',
-                data: regionData[regionName] || Array(hours.length).fill(0) // 데이터가 없는 경우 빈 데이터 사용
+                data: formattedData // 소수점 두 자리로 포맷된 데이터 사용
             }
         ]
     };
