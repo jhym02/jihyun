@@ -92,21 +92,16 @@ public class MemberController {
 	
 	// 로그인 후 내 발전소 페이지 이동, 내 발전소 리스트 가져오기
 	@RequestMapping("/loginon")
-	public String gologinon(TblMember member,HttpSession session) {
-		Object a=session.getAttribute("user");
-		if (a==null) {
+	public String gologinon(HttpSession session) {
+		TblMember member=(TblMember)session.getAttribute("user");
+		if (member==null) {
 			session.setAttribute("ms", "로그인 후 사용가능합니다.");
 			return "redirect:/main";
 		}else 
 		{
 		String memId = member.getMemId();
-		
-		System.out.println(memId);
-		
 		ArrayList<PlantListDTO> plantList = plantMapper.plantList(memId);
-		
 		session.setAttribute("PlnatList", plantList);
-		System.out.println(plantList);
 		return "loginon";
 		}
 	}

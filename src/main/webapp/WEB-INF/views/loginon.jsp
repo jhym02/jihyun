@@ -28,11 +28,13 @@
 			<aside class="sidebar">
 				<div class="plant">
 					<c:forEach var="plant" items="${PlnatList}">
-						<p>${plant.mp_name}</p>
-						<p>${plant.zip_code}</p>
-						<p>${plant.p_address}</p>
-						<p>${plant.p_detail}</p>
-						<button>삭제</button>
+						<c:if test="${'N' eq plant.mp_del}">
+							<p>${plant.mp_name}</p>
+							<p>${plant.zip_code}</p>
+							<p>${plant.p_address}</p>
+							<p>${plant.p_detail}</p>
+							<a href="plantDel?plantId=${plant.plant_id}"><button>삭제</button></a>
+						</c:if>
 					</c:forEach>
 				</div>
 				<button class="add-plant">발전소 등록 +</button>
@@ -237,7 +239,7 @@
 			</h2>
 			<form id="plant-form" action="plantRegister" method="post">
 				<label for="plant-name">발전소 이름</label> <input type="text"
-					id="plant-name" name="m_pName" required><br> <br>
+					id="plant-name" name="mpName" required><br> <br>
 				<label for="plant-postcode">우편번호</label> <input type="text"
 					id="plant-postcode" name="zipCode" required><br> <br>
 				<label for="plant-address">발전소 주소</label> <input type="text"
