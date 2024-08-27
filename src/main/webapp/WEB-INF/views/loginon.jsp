@@ -155,8 +155,6 @@
                   </tbody>
                </table>
             </div>
-
-<<<<<<< HEAD
 	<!-- 모달 구조 추가 -->
 	<div id="plant-modal" class="modal">
 		<div class="modal-content">
@@ -179,7 +177,6 @@
 		</div>
 	</div>
 	<jsp:include page="footer.jsp" />
-=======
             <!-- 기상 탭 콘텐츠 -->
             <div id="weather" class="tab-content">
                <!-- 기상 차트 -->
@@ -291,6 +288,5 @@
       </div>
    </div>
    <jsp:include page="footer.jsp" />
->>>>>>> 54f3d66a2b4ad2891408f0e7b7e776ffa3c53dfc
 </body>
 </html>
