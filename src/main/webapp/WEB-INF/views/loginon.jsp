@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="assets/css/chart.css">
 <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="assets/js/loginon.js"></script>
 <script src="assets/js/dataTable.js"></script>
 <!-- 통합된 스크립트 파일 -->
@@ -164,7 +165,8 @@
 							<label for="plant-name">발전소 이름</label> <input type="text"
 								id="plant-name" name="mpName" required><br> <br>
 							<label for="plant-postcode">우편번호</label> <input type="text"
-								id="plant-postcode" name="zipCode" required><br> <br>
+								id="plant-postcode" name="zipCode" required><br><br>
+							<input type="button" onclick="findPost()" value="우편번호 찾기"><br>
 							<label for="plant-address">발전소 주소</label> <input type="text"
 								id="plant-address" name="pAddress" required><br> <br>
 							<label for="plant-detail">상세주소</label> <input type="text"
@@ -262,7 +264,9 @@
 			</section>
 		</div>
 	</main>
-	<script src="assests/js/dataTable.js"></script>
+	<script src="assets/js/dataTable.js"></script>
+	<script src="assets/js/popup_2.js"></script>
 	<jsp:include page="footer.jsp" />
 </body>
+
 </html>
