@@ -75,7 +75,7 @@ main {
 .main-content {
    width: 70%;
    padding: 20px;
-   background: linear-gradient(to bottom, #0091EA,white,white,white,white,white);
+   background: linear-gradient(to bottom, #0091EA,white,white,white,white,white, white);
    border-radius: 30px;
 }
 
@@ -212,6 +212,6 @@ thead th {
     background-color: #eaedf2;
 }
 
-#tr-hover:hover {
-    background-color: #e9ecef;
+.hover-effect:hover {
+    background-color: #e9ecef; /* 커서를 올렸을 때 배경색 */
 }

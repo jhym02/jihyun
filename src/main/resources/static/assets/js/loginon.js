@@ -9,7 +9,7 @@ $(document).ready(function() {
 
         // 각 탭에 따른 차트 렌더링
         if (target === 'generation') {
-            renderGenerationChart();
+            // 차트 렌더링 부분이 삭제되었습니다.
         } else if (target === 'weather') {
             renderWeatherChart();
         }
@@ -24,73 +24,6 @@ $(document).ready(function() {
         $(this).addClass('active');
     });
 
-    // 발전량 차트 초기화 및 렌더링
-    function renderGenerationChart() {
-        var chartToday = echarts.init(document.getElementById('chart-container-today'));
-        var chartTomorrow = echarts.init(document.getElementById('chart-container-tomorrow'));
-
-        var optionToday = {
-            xAxis: {
-                type: 'category',
-                data: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'], // 시간 데이터
-            	name: '시간',
-				nameLocation: 'middle', // 'end'로 설정하면 x축의 끝에 위치
-			    nameTextStyle: {
-			        fontSize: 14, // 글씨 크기 조정
-			        padding: [20, 0, 0, 0] // name과 x축 간의 여백 조정
-			    }
-			},
-            yAxis: {
-                type: 'value',
-				name: '태양광발전량(MWh)',
-				nameLocation: 'middle',
-				nameTextStyle: {
-			        fontSize: 14, // 글씨 크기 조정
-			        padding: [0, 0, 25, 0] // name과 y축 간의 여백 조정
-			    }
-            },
-            series: [{
-                data: [820, 932, 901, 934, 1290, 1330, 1320, 1500, 1450, 1430, 1420, 1350, 1250, 1150, 1100, 1080, 1040, 1000, 960, 920, 880, 850, 820, 790], // 발전량 데이터
-                type: 'bar',
-                itemStyle: {
-                    color: '#33C3FF' // 발전량 차트 색상 (파랑색)
-                }
-            }]
-        };
-
-        var optionTomorrow = {
-            xAxis: {
-                type: 'category',
-                data: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'],
-				name: '시간',
-				nameLocation: 'middle', // 'end'로 설정하면 x축의 끝에 위치
-			    nameTextStyle: {
-			        fontSize: 14, // 글씨 크기 조정
-			        padding: [20, 0, 0, 0] // name과 x축 간의 여백 조정
-			    }
-            },
-            yAxis: {
-                type: 'value',
-				name: '태양광발전량(MWh)',
-				nameLocation: 'middle',
-				nameTextStyle: {
-			        fontSize: 14, // 글씨 크기 조정
-			        padding: [0, 0, 25, 0] // name과 y축 간의 여백 조정
-			    }
-            },
-            series: [{
-                data: [620, 732, 701, 734, 1090, 1130, 1120, 1300, 1250, 1230, 1220, 1150, 1050, 950, 900, 880, 840, 800, 760, 720, 680, 650, 620, 590], // 발전량 데이터
-                type: 'bar',
-                itemStyle: {
-                    color: '#ff8f00' // 내일 발전량 차트 색상 (주황색)
-                }
-            }]
-        };
-
-        chartToday.setOption(optionToday);
-        chartTomorrow.setOption(optionTomorrow);
-    }
-
     // 기상 차트 초기화 및 렌더링
     function renderWeatherChart() {
         var chartWeatherToday = echarts.init(document.getElementById('chart-container-weather-today'));
@@ -99,22 +32,10 @@ $(document).ready(function() {
         var optionWeatherToday = {
             xAxis: {
                 type: 'category',
-                data: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'],
-				name: '시간',
-				nameLocation: 'middle', // 'end'로 설정하면 x축의 끝에 위치
-			    nameTextStyle: {
-			        fontSize: 14, // 글씨 크기 조정
-			        padding: [20, 0, 0, 0] // name과 x축 간의 여백 조정
-			    }
+                data: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'] // 시간 데이터
             },
             yAxis: {
-                type: 'value',
-				name: '태양광발전량(MWh)',
-				nameLocation: 'middle',
-				nameTextStyle: {
-			        fontSize: 14, // 글씨 크기 조정
-			        padding: [0, 0, 25, 0] // name과 y축 간의 여백 조정
-			    }
+                type: 'value'
             },
             series: [{
                 data: [15, 14, 13, 13, 12, 12, 11, 12, 13, 14, 15, 16, 17, 18, 18, 19, 19, 18, 17, 16, 15, 14, 13, 12], // 기온 데이터
@@ -128,22 +49,10 @@ $(document).ready(function() {
         var optionWeatherTomorrow = {
             xAxis: {
                 type: 'category',
-                data: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'],
-				name: '시간',
-				nameLocation: 'middle', // 'end'로 설정하면 x축의 끝에 위치
-			    nameTextStyle: {
-			        fontSize: 14, // 글씨 크기 조정
-			        padding: [20, 0, 0, 0] // name과 x축 간의 여백 조정
-			    }
+                data: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'] // 시간 데이터
             },
             yAxis: {
-                type: 'value',
-				name: '태양광발전량(MWh)',
-				nameLocation: 'middle',
-				nameTextStyle: {
-			        fontSize: 14, // 글씨 크기 조정
-			        padding: [0, 0, 25, 0] // name과 y축 간의 여백 조정
-			    }
+                type: 'value'
             },
             series: [{
                 data: [10, 12, 11, 11, 10, 10, 9, 10, 11, 12, 13, 14, 15, 16, 16, 17, 17, 16, 15, 14, 13, 12, 11, 10], // 기온 데이터
@@ -157,9 +66,6 @@ $(document).ready(function() {
         chartWeatherToday.setOption(optionWeatherToday);
         chartWeatherTomorrow.setOption(optionWeatherTomorrow);
     }
-
-    // 초기 차트 렌더링
-    renderGenerationChart();
 
     // CSV 다운로드 버튼 클릭 시 CSV 생성 및 다운로드
     $("#excelDownload").click(function() {
@@ -238,7 +144,6 @@ $(document).ready(function() {
             data: {},
             success: function(res) {
                 let data = res;
-                console.log("데이터", data);
 
                 for (let i = 0; i < data.length; i++) {
                     let tr = '<tr>';
@@ -246,10 +151,14 @@ $(document).ready(function() {
                     tr += '<td>' + data[i].solarRadiation.toFixed(2) + '</td>';
                     tr += '<td>' + data[i].temperature.toFixed(2) + '</td>';
                     tr += '<td>' + data[i].windSpeed.toFixed(2) + '</td>';
+                    tr += '<td>' + data[i].humid.toFixed(0) + '</td>';
+                    tr += '<td>' + data[i].pres.toFixed(1) + '</td>';
                     tr += '<td>' + data[i].hour + '</td>';
                     tr += '<td>' + data[i].tm_s.toFixed(2) + '</td>';
                     tr += '<td>' + data[i].tm_tme.toFixed(2) + '</td>';
                     tr += '<td>' + data[i].tm_w.toFixed(2) + '</td>';
+                    tr += '<td>' + data[i].tm_humid.toFixed(0) + '</td>';
+                    tr += '<td>' + data[i].tm_pres.toFixed(1) + '</td>';
                     tr += '</tr>';
 
                     $('#weather-data-table').append(tr);
