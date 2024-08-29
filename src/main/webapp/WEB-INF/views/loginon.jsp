@@ -45,29 +45,32 @@
          </aside>
          <section class="main-content">
             <div class="plant-info">
-               <h3>발전소_01</h3>
-               <div class="info">
-                  <%
-                     double smpValue = 131021; // 예시 SMP 값 (원)
-                     double generationHours = 5.25; // 예시 발전 시간 (시간)
-
-                     // SMP 수익과 발전 시간을 곱하여 총 수익을 계산
-                     double totalEarnings = smpValue * generationHours;
-
-                     // 포맷팅: 천 단위 구분 기호와 소수점 두 자리
-                     String formattedSmpValue = String.format("%,.0f", smpValue);
-                     String formattedTotalEarnings = String.format("%,.0f", totalEarnings);
-                  %>
-                  <div class="item">
-                     <p>오늘의 SMP 수익</p>
-                     <i class="bi bi-coin"> <%=formattedTotalEarnings%>원</i>
-                  </div>
-                  <div class="item">
-                     <p>오늘의 발전 시간</p>
-                     <i class="bi bi-clock"> <%=generationHours%>시간</i>
-                  </div>
-               </div>
-            </div>
+			    <p id="myplant">솔라파워 발전기 1호</p>
+			    <div class="flex-container">
+			        <div class="span-container">
+			            <span id="address">전라남도 나주시 빛가람동</span>
+			            <span><i class="bi bi-brightness-low-fill"></i> 맑음</span>
+			            <span><i class="bi bi-thermometer-half"></i> 31℃</span>
+			        </div>
+			            <%
+			                double smpValue = 131021; // 예시 SMP 값 (원)
+			                double generationHours = 5.25; // 예시 발전 시간 (시간)
+			
+			                // SMP 수익과 발전 시간을 곱하여 총 수익을 계산
+			                double totalEarnings = smpValue * generationHours;
+			
+			                // 포맷팅: 천 단위 구분 기호와 소수점 두 자리
+			                String formattedSmpValue = String.format("%,.0f", smpValue);
+			                String formattedTotalEarnings = String.format("%,.0f", totalEarnings);
+			            %>
+			            <div class="item">
+			                <p>오늘의 SMP 수익</p>
+			                <span class="spans"><i class="bi bi-currency-exchange"></i> <%=formattedTotalEarnings%>원</span>
+			                <p>오늘의 발전 시간</p>
+			                <span class="spans"><i class="bi bi-clock-history"></i> <%=generationHours%>시간</span>
+			            </div>
+			    </div>
+			</div>
 
 
             <!-- 탭 추가 -->
@@ -139,7 +142,7 @@
                         HourlyData tomorrowData = (tomorrowDataList != null && i < tomorrowDataList.size()) ? tomorrowDataList.get(i)
                         : null;
                      %>
-                     <tr>
+                     <tr id="tr-hover">
                         <td class="custom-background"><%=todayData != null ? todayData.getHour() : hours[i]%></td>
                         <td><%=todayData != null ? todayData.getPowerGeneration() : ""%></td>
                         <td><%=todayData != null ? todayData.getCumulativePower() : ""%></td>
@@ -245,7 +248,7 @@
                         ? tomorrowWeatherDataList.get(i)
                         : null;
                      %>
-                     <tr>
+                     <tr id="tr-hover">
                         <td class="custom-background"><%=todayData != null ? todayData.getHour() : hours[i]%></td>
                         <td><%=todayData != null ? todayData.getSolarRadiation() : ""%></td>
                         <td><%=todayData != null ? todayData.getTemperature() : ""%></td>
