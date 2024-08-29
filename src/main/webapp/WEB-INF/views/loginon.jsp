@@ -14,11 +14,10 @@
    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 <link rel="stylesheet" href="assets/css/loginon.css">
 <link rel="stylesheet" href="assets/css/modal.css">
-<link rel="stylesheet" href="assets/css/chart.css">
 <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="assets/js/loginon.js"></script>
-<script src="assets/js/dataTable.js"></script>
+
 <!-- 통합된 스크립트 파일 -->
 </head>
 <body>
@@ -52,7 +51,7 @@
             </div>
             <button class="add-plant">발전소 등록 +</button>
          </aside>
-           <section class="main-content">
+         <section class="main-content">
             <div class="plant-info">
 			    <p id="myplant">솔라파워 발전기 1호</p>
 			    <div class="flex-container">
@@ -80,11 +79,10 @@
 			            </div>
 			    </div>
 			</div>
-         
             <!-- 탭 추가 -->
             <div class="tabs">
                <button class="tab-button active" onclick="showTab('generation')">발전량</button>
-               <button class="tab-button" onclick="showTab('weather')">기상</button>
+               <button class="tab-button" id="wd" onclick="showTab('weather')">기상</button>
 
 
                <!-- CSV 다운로드 버튼 추가 -->
@@ -140,12 +138,7 @@
                      </tr>
                   </thead>
                   <tbody>
-                     <%
-                     String[] hours = new String[24];
-                     for (int i = 0; i < 24; i++) {
-                        hours[i] = String.format("%02d:00", i);
-                     }
-                     %>
+                     
                      <tr class="powerData">
 
                      </tr>
@@ -223,45 +216,21 @@
                   <!-- 시간별 기상 데이터 -->
                   <tbody>
                      <%
-                     List<HourlyWeatherData> todayWeatherDataList = (List<HourlyWeatherData>) request.getAttribute("todayWeatherDataList");
-                     List<HourlyWeatherData> tomorrowWeatherDataList = (List<HourlyWeatherData>) request
-                           .getAttribute("tomorrowWeatherDataList");
                      String[] hoursArray = new String[24];
                      for (int i = 0; i < 24; i++) {
                         hoursArray[i] = String.format("%02d:00", i);
                      }
-                     for (int i = 0; i < 24; i++) {
-                        HourlyWeatherData todayData = (todayWeatherDataList != null && i < todayWeatherDataList.size())
-                        ? todayWeatherDataList.get(i)
-                        : null;
-                        HourlyWeatherData tomorrowData = (tomorrowWeatherDataList != null && i < tomorrowWeatherDataList.size())
-                        ? tomorrowWeatherDataList.get(i)
-                        : null;
                      %>
                      <tr>
-                        <td class="custom-background"><%=todayData != null ? todayData.getHour() : hours[i]%></td>
-                        <td><%=todayData != null ? todayData.getSolarRadiation() : ""%></td>
-                        <td><%=todayData != null ? todayData.getTemperature() : ""%></td>
-                        <td><%=todayData != null ? todayData.getWindSpeed() : ""%></td>
-                        <td><%=todayData != null ? todayData.getHumidity() : ""%></td>
-                        <td><%=todayData != null ? todayData.getPressure() : ""%></td>
-                        <td class="custom-background"><%=tomorrowData != null ? tomorrowData.getHour() : hours[i]%></td>
-                        <td><%=tomorrowData != null ? tomorrowData.getSolarRadiation() : ""%></td>
-                        <td><%=tomorrowData != null ? tomorrowData.getTemperature() : ""%></td>
-                        <td><%=tomorrowData != null ? tomorrowData.getWindSpeed() : ""%></td>
-                        <td><%=tomorrowData != null ? tomorrowData.getHumidity() : ""%></td>
-                        <td><%=tomorrowData != null ? tomorrowData.getPressure() : ""%></td>
+                        
                      </tr>
-                     <%
-                     }
-                     %>
                   </tbody>
                </table>
             </div>
          </section>
       </div>
    </main>
-   <script src="assests/js/dataTable.js"></script>
+   <script src="assets/js/dataTable.js"></script>
    <jsp:include page="footer.jsp" />
 </body>
 </html>
