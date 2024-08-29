@@ -85,7 +85,7 @@
 				<!-- 탭 추가 -->
 				<div class="tabs">
 					<button class="tab-button active" onclick="showTab('generation')">발전량</button>
-					<button class="tab-button" onclick="showTab('weather')">기상</button>
+					<button class="tab-button" id="wd" onclick="showTab('weather')">기상</button>
 
 
 					<!-- CSV 다운로드 버튼 추가 -->
@@ -141,12 +141,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<%
-							String[] hours = new String[24];
-							for (int i = 0; i < 24; i++) {
-								hours[i] = String.format("%02d:00", i);
-							}
-							%>
+							
 							<tr class="powerData">
 
 							</tr>
@@ -224,38 +219,14 @@
 						<!-- 시간별 기상 데이터 -->
 						<tbody>
 							<%
-							List<HourlyWeatherData> todayWeatherDataList = (List<HourlyWeatherData>) request.getAttribute("todayWeatherDataList");
-							List<HourlyWeatherData> tomorrowWeatherDataList = (List<HourlyWeatherData>) request
-									.getAttribute("tomorrowWeatherDataList");
 							String[] hoursArray = new String[24];
 							for (int i = 0; i < 24; i++) {
 								hoursArray[i] = String.format("%02d:00", i);
 							}
-							for (int i = 0; i < 24; i++) {
-								HourlyWeatherData todayData = (todayWeatherDataList != null && i < todayWeatherDataList.size())
-								? todayWeatherDataList.get(i)
-								: null;
-								HourlyWeatherData tomorrowData = (tomorrowWeatherDataList != null && i < tomorrowWeatherDataList.size())
-								? tomorrowWeatherDataList.get(i)
-								: null;
 							%>
 							<tr>
-								<td class="custom-background"><%=todayData != null ? todayData.getHour() : hours[i]%></td>
-								<td><%=todayData != null ? todayData.getSolarRadiation() : ""%></td>
-								<td><%=todayData != null ? todayData.getTemperature() : ""%></td>
-								<td><%=todayData != null ? todayData.getWindSpeed() : ""%></td>
-								<td><%=todayData != null ? todayData.getHumidity() : ""%></td>
-								<td><%=todayData != null ? todayData.getPressure() : ""%></td>
-								<td class="custom-background"><%=tomorrowData != null ? tomorrowData.getHour() : hours[i]%></td>
-								<td><%=tomorrowData != null ? tomorrowData.getSolarRadiation() : ""%></td>
-								<td><%=tomorrowData != null ? tomorrowData.getTemperature() : ""%></td>
-								<td><%=tomorrowData != null ? tomorrowData.getWindSpeed() : ""%></td>
-								<td><%=tomorrowData != null ? tomorrowData.getHumidity() : ""%></td>
-								<td><%=tomorrowData != null ? tomorrowData.getPressure() : ""%></td>
+								
 							</tr>
-							<%
-							}
-							%>
 						</tbody>
 					</table>
 				</div>
@@ -263,6 +234,7 @@
 		</div>
 	</main>
 	<script src="assests/js/dataTable.js"></script>
+	<script src="assests/js/weatherData.js"></script>
 	<jsp:include page="footer.jsp" />
 </body>
 </html>

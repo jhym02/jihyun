@@ -1,7 +1,6 @@
 package com.smhrd.Controller;
 
 import com.smhrd.entity.HourlyData;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,22 +12,21 @@ import java.util.List;
 public class MyController {
 
     @GetMapping("/dataTable")
-    public List showHourlyDataTable(Model model) {
+    public List<HourlyData> showHourlyDataTable(Model model, HourlyData data) {
         List<HourlyData> hourlyDataList = new ArrayList<>();
 
         for (int hour = 0; hour < 24; hour++) {
-            HourlyData data = new HourlyData();
             data.setHour(hour);
-            data.setPowerGeneration(Math.random() * 10);
-            data.setCumulativePower(Math.random() * 100);
-            data.setSolarRadiation(Math.random() * 1000);
-            data.setTemperature(Math.random() * 35);
-            data.setWindSpeed(Math.random() * 15);
-            data.setTm_pg(Math.random() * 10);
-            data.setTm_cp(Math.random() * 100);
-            data.setTm_s(Math.random() * 1000);
-            data.setTm_tme(Math.random() * 35);
-            data.setTm_w(Math.random() * 15);
+            data.setPowerGeneration(data.getPowerGeneration());
+            data.setCumulativePower(data.getCumulativePower());
+            data.setSolarRadiation(data.getSolarRadiation());
+            data.setTemperature(data.getTemperature());
+            data.setWindSpeed(data.getWindSpeed());
+            data.setTm_pg(data.getTm_pg());
+            data.setTm_cp(data.getTm_cp());
+            data.setTm_s(data.getTm_s());
+            data.setTm_tme(data.getTm_tme());
+            data.setTm_w(data.getTm_w());
             hourlyDataList.add(data);
         }
 

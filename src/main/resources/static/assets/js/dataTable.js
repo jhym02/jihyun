@@ -6,6 +6,8 @@ $.ajax({
 	},
 	success: function(res) {
 		let data = res;
+		console.log("데이터",data)
+		
 
 		for (let i = 0; i < data.length; i++) {
 			let tr = '<tr>';
