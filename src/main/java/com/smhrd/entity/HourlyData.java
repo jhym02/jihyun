@@ -1,7 +1,5 @@
 package com.smhrd.entity;
 
-import java.sql.Time;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.Data;
