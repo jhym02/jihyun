@@ -14,11 +14,10 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 <link rel="stylesheet" href="assets/css/loginon.css">
 <link rel="stylesheet" href="assets/css/modal.css">
-<link rel="stylesheet" href="assets/css/chart.css">
 <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="assets/js/loginon.js"></script>
-<script src="assets/js/dataTable.js"></script>
+
 <!-- 통합된 스크립트 파일 -->
 </head>
 <body>
@@ -233,8 +232,7 @@
 			</section>
 		</div>
 	</main>
-	<script src="assests/js/dataTable.js"></script>
-	<script src="assests/js/weatherData.js"></script>
+	<script src="assets/js/dataTable.js"></script>
 	<jsp:include page="footer.jsp" />
 </body>
 </html>
