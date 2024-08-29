@@ -38,6 +38,10 @@ public class MyController {
                 data.setTm_s(0);
                 data.setTm_tme(0);
                 data.setTm_w(0);
+                data.setHumid(0);
+                data.setTm_humid(0);
+                data.setPres(0);
+                data.setTm_pres(0);
                 hourlyDataList.add(data);
             }
             return hourlyDataList;

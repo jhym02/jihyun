@@ -21,6 +21,10 @@ public class HourlyData {
     private double tm_s;
     private double tm_tme;
     private double tm_w;
+    private int humid;
+    private int tm_humid;
+    private int pres;
+    private int tm_pres;
 
 
 }

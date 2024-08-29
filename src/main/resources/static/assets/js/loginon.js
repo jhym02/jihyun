@@ -190,18 +190,21 @@ $(document).ready(function() {
             data: {},
             success: function(res) {
                 let data = res;
-                console.log("데이터", data);
 
-                for (let i = 0; i < data.length; i++) {
+                for (let i = 0; i <= data.length; i++) {
                     let tr = '<tr>';
                     tr += '<td>' + data[i].hour + '</td>';
                     tr += '<td>' + data[i].solarRadiation.toFixed(2) + '</td>';
                     tr += '<td>' + data[i].temperature.toFixed(2) + '</td>';
                     tr += '<td>' + data[i].windSpeed.toFixed(2) + '</td>';
+                    tr += '<td>' + data[i].humid.toFixed(0) + '</td>';
+                    tr += '<td>' + data[i].pres.toFixed(1) + '</td>';
                     tr += '<td>' + data[i].hour + '</td>';
                     tr += '<td>' + data[i].tm_s.toFixed(2) + '</td>';
                     tr += '<td>' + data[i].tm_tme.toFixed(2) + '</td>';
                     tr += '<td>' + data[i].tm_w.toFixed(2) + '</td>';
+                    tr += '<td>' + data[i].tm_humid.toFixed(0) + '</td>';
+                    tr += '<td>' + data[i].tm_pres.toFixed(1) + '</td>';
                     tr += '</tr>';
 
                     $('#weather-data-table').append(tr);
