@@ -203,8 +203,8 @@
       }
      
    </script>
-   
-      
+    <script src="https://code.jquery.com/jquery-3.7.1.js" type="text/javascript"></script>
+    <script src="assets/js/test.js"></script>  
    <jsp:include page="footer.jsp" />
 </body>
 </html>
