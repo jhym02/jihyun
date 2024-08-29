@@ -14,10 +14,12 @@
    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 <link rel="stylesheet" href="assets/css/loginon.css">
 <link rel="stylesheet" href="assets/css/modal.css">
+<link rel="stylesheet" href="assets/css/chart.css">
 <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="assets/js/loginon.js"></script>
-
+<script src="assets/js/dataTable.js"></script>
 <!-- 통합된 스크립트 파일 -->
 </head>
 <body>
@@ -53,36 +55,38 @@
          </aside>
          <section class="main-content">
             <div class="plant-info">
-			    <p id="myplant">솔라파워 발전기 1호</p>
-			    <div class="flex-container">
-			        <div class="span-container">
-			            <span id="address">전라남도 나주시 빛가람동</span>
-			            <span><i class="bi bi-brightness-low-fill"></i> 맑음</span>
-			            <span><i class="bi bi-thermometer-half"></i> 31℃</span>
-			        </div>
-			            <%
-			                double smpValue = 131021; // 예시 SMP 값 (원)
-			                double generationHours = 5.25; // 예시 발전 시간 (시간)
-			
-			                // SMP 수익과 발전 시간을 곱하여 총 수익을 계산
-			                double totalEarnings = smpValue * generationHours;
-			
-			                // 포맷팅: 천 단위 구분 기호와 소수점 두 자리
-			                String formattedSmpValue = String.format("%,.0f", smpValue);
-			                String formattedTotalEarnings = String.format("%,.0f", totalEarnings);
-			            %>
-			            <div class="item">
-			                <p>오늘의 SMP 수익</p>
-			                <span class="spans"><i class="bi bi-currency-exchange"></i> <%=formattedTotalEarnings%>원</span>
-			                <p>오늘의 발전 시간</p>
-			                <span class="spans"><i class="bi bi-clock-history"></i> <%=generationHours%>시간</span>
-			            </div>
-			    </div>
-			</div>
+               <h3>발전소_01</h3>
+               <div class="info">
+                  <%
+                  double smpValue = 131021; // 예시 SMP 값 (원)
+                  double generationHours = 5.25; // 예시 발전 시간 (시간)
+   
+
+                  // SMP 수익과 발전 시간을 곱하여 총 수익을 계산
+                  double totalEarnings = smpValue * generationHours;
+
+                  // 포맷팅: 천 단위 구분 기호와 소수점 두 자리
+                  String formattedSmpValue = String.format("%,.0f", smpValue);
+                  String formattedTotalEarnings = String.format("%,.0f", totalEarnings);
+                  %>
+                  <div class="item">
+                     <p>오늘의 SMP 수익</p>
+                     <i class="bi bi-coin"> <%=formattedTotalEarnings%>원
+                     </i>
+                  </div>
+                  <div class="item">
+                     <p>오늘의 발전 시간</p>
+                     <i class="bi bi-clock"> <%=generationHours%>시간
+                     </i>
+                  </div>
+               </div>
+            </div>
+
+
             <!-- 탭 추가 -->
             <div class="tabs">
                <button class="tab-button active" onclick="showTab('generation')">발전량</button>
-               <button class="tab-button" id="wd" onclick="showTab('weather')">기상</button>
+               <button class="tab-button" onclick="showTab('weather')">기상</button>
 
 
                <!-- CSV 다운로드 버튼 추가 -->
@@ -138,7 +142,12 @@
                      </tr>
                   </thead>
                   <tbody>
-                     
+                     <%
+                     String[] hours = new String[24];
+                     for (int i = 0; i < 24; i++) {
+                        hours[i] = String.format("%02d:00", i);
+                     }
+                     %>
                      <tr class="powerData">
 
                      </tr>
@@ -156,7 +165,8 @@
                      <label for="plant-name">발전소 이름</label> <input type="text"
                         id="plant-name" name="mpName" required><br> <br>
                      <label for="plant-postcode">우편번호</label> <input type="text"
-                        id="plant-postcode" name="zipCode" required><br> <br>
+                        id="plant-postcode" name="zipCode" required><br><br>
+                     <input type="button" onclick="findPost()" value="우편번호 찾기"><br>
                      <label for="plant-address">발전소 주소</label> <input type="text"
                         id="plant-address" name="pAddress" required><br> <br>
                      <label for="plant-detail">상세주소</label> <input type="text"
@@ -216,14 +226,38 @@
                   <!-- 시간별 기상 데이터 -->
                   <tbody>
                      <%
+                     List<HourlyWeatherData> todayWeatherDataList = (List<HourlyWeatherData>) request.getAttribute("todayWeatherDataList");
+                     List<HourlyWeatherData> tomorrowWeatherDataList = (List<HourlyWeatherData>) request
+                           .getAttribute("tomorrowWeatherDataList");
                      String[] hoursArray = new String[24];
                      for (int i = 0; i < 24; i++) {
                         hoursArray[i] = String.format("%02d:00", i);
                      }
+                     for (int i = 0; i < 24; i++) {
+                        HourlyWeatherData todayData = (todayWeatherDataList != null && i < todayWeatherDataList.size())
+                        ? todayWeatherDataList.get(i)
+                        : null;
+                        HourlyWeatherData tomorrowData = (tomorrowWeatherDataList != null && i < tomorrowWeatherDataList.size())
+                        ? tomorrowWeatherDataList.get(i)
+                        : null;
                      %>
                      <tr>
-                        
+                        <td class="custom-background"><%=todayData != null ? todayData.getHour() : hours[i]%></td>
+                        <td><%=todayData != null ? todayData.getSolarRadiation() : ""%></td>
+                        <td><%=todayData != null ? todayData.getTemperature() : ""%></td>
+                        <td><%=todayData != null ? todayData.getWindSpeed() : ""%></td>
+                        <td><%=todayData != null ? todayData.getHumidity() : ""%></td>
+                        <td><%=todayData != null ? todayData.getPressure() : ""%></td>
+                        <td class="custom-background"><%=tomorrowData != null ? tomorrowData.getHour() : hours[i]%></td>
+                        <td><%=tomorrowData != null ? tomorrowData.getSolarRadiation() : ""%></td>
+                        <td><%=tomorrowData != null ? tomorrowData.getTemperature() : ""%></td>
+                        <td><%=tomorrowData != null ? tomorrowData.getWindSpeed() : ""%></td>
+                        <td><%=tomorrowData != null ? tomorrowData.getHumidity() : ""%></td>
+                        <td><%=tomorrowData != null ? tomorrowData.getPressure() : ""%></td>
                      </tr>
+                     <%
+                     }
+                     %>
                   </tbody>
                </table>
             </div>
@@ -231,6 +265,8 @@
       </div>
    </main>
    <script src="assets/js/dataTable.js"></script>
+   <script src="assets/js/popup_2.js"></script>
    <jsp:include page="footer.jsp" />
 </body>
+
 </html>
