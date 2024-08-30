@@ -24,9 +24,9 @@ public class MyController {
             return hourlyDataList;
         } else {
             // 데이터가 없을 경우에만 시간 데이터를 기본으로 한 리스트를 생성하여 반환
-            for (int hour = 0; hour < 24; hour++) {
+            for (int hour = 0; hour < 25; hour++) {
                 HourlyData data = new HourlyData();
-                data.setHour(hour);
+                data.setHour(0);
                 // 필요한 초기 데이터를 설정하거나 기본값을 설정
                 data.setPowerGeneration(0);
                 data.setCumulativePower(0);

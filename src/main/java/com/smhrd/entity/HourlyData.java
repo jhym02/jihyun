@@ -7,9 +7,9 @@ import lombok.Data;
 @Data
 @Entity
 public class HourlyData {
-	
-	@Id
-	private int idx;
+   
+   @Id
+   private int idx;
     private int hour;
     private double powerGeneration;
     private double cumulativePower;
