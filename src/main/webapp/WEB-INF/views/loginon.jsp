@@ -84,7 +84,7 @@
 
 				<!-- 탭 추가 -->
 				<div class="tabs">
-					<button class="tab-button active" onclick="showTab('generation')">발전량</button>
+					<button class="tab-button active" id="pd" onclick="showTab('generation')">발전량</button>
 					<button class="tab-button" id="wd" onclick="showTab('weather')">기상</button>
 
 
