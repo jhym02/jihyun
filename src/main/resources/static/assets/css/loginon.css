@@ -75,7 +75,7 @@ main {
 .main-content {
    width: 70%;
    padding: 20px;
-   background: linear-gradient(to bottom, #0091EA,white,white,white,white,white, white);
+   background: linear-gradient(to bottom, #0091EA,white,white,white,white,white);
    border-radius: 30px;
 }
 

@@ -22,16 +22,22 @@ $(document).ready(function () {
                 },
                 xAxis: {
                     type: 'category',
+					name: '시간',
                     data: hours,
                     axisLabel: {
                         formatter: function (value) {
                             // 짝수 시간만 출력, 나머지는 공백으로 처리
                             return value % 2 === 0 ? value : '';
                         }
-                    }
+                    },
+					nameLocation: 'middle',
+					nameGap: 30,
                 },
                 yAxis: {
-                    type: 'value'
+                    type: 'value',
+					name: '태양광발전량(KWh)',
+					nameLocation: 'middle',
+					nameGap: 40,
                 },
                 series: [
                     {
@@ -43,7 +49,7 @@ $(document).ready(function () {
                     {
                         name: '누적 발전량',
                         data: cumulativePower,
-                        type: 'bar' // 막대그래프로 시각화
+                        type: 'bar'
                     }
                 ]
             };
@@ -54,16 +60,22 @@ $(document).ready(function () {
                 },
                 xAxis: {
                     type: 'category',
+					name: '시간',
                     data: hours,
                     axisLabel: {
                         formatter: function (value) {
                             // 짝수 시간만 출력, 나머지는 공백으로 처리
                             return value % 2 === 0 ? value : '';
                         }
-                    }
+                    },
+					nameLocation: 'middle',
+					nameGap: 30,
                 },
                 yAxis: {
-                    type: 'value'
+                    type: 'value',
+					name: '태양광발전량(KWh)',
+					nameLocation: 'middle',
+					nameGap: 40,
                 },
                 series: [
                     {
@@ -71,11 +83,12 @@ $(document).ready(function () {
                         data: tomorrowPowerGeneration,
                         type: 'line',
                         smooth: true
+						
                     },
                     {
                         name: '누적 발전량',
                         data: tomorrowCumulativePower,
-                        type: 'bar' // 막대그래프로 시각화
+                        type: 'bar'
                     }
                 ]
             };
@@ -89,13 +102,13 @@ $(document).ready(function () {
 
             data.forEach(item => {
                 let tr = '<tr class="hover-effect">'; // 클래스 추가
-                tr += '<td class="custom-background">' + item.hour + '</td>';
+                tr += '<td class="custom-background">' + item.hour + ':00' + '</td>';
                 tr += '<td>' + item.powerGeneration.toFixed(2) + '</td>';
                 tr += '<td>' + item.cumulativePower.toFixed(2) + '</td>';
                 tr += '<td>' + item.solarRadiation.toFixed(2) + '</td>';
                 tr += '<td>' + item.temperature.toFixed(2) + '</td>';
                 tr += '<td>' + item.windSpeed.toFixed(2) + '</td>';
-               	tr += '<td class="custom-background">' + item.hour + '</td>';
+                tr += '<td class="custom-background">' + item.hour + ':00' + '</td>';
                 tr += '<td>' + item.tm_pg.toFixed(2) + '</td>';
                 tr += '<td>' + item.tm_cp.toFixed(2) + '</td>';
                 tr += '<td>' + item.tm_s.toFixed(2) + '</td>';

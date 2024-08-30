@@ -17,6 +17,9 @@
 <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="assets/js/loginon.js"></script>
+
+<!-- 통합된 스크립트 파일 -->
 </head>
 <body>
    <jsp:include page="header.jsp" />
@@ -80,7 +83,7 @@
          
             <!-- 탭 추가 -->
             <div class="tabs">
-               <button class="tab-button active" onclick="showTab('generation')">발전량</button>
+               <button class="tab-button active" id="pd" onclick="showTab('generation')">발전량</button>
                <button class="tab-button" id="wd" onclick="showTab('weather')">기상</button>
 
 
@@ -154,8 +157,8 @@
                   <form id="plant-form" action="plantRegister" method="post">
                      <label for="plant-name">발전소 이름</label> <input type="text"
                         id="plant-name" name="mpName" required><br> <br>
-                     <label for="plant-postcode">우편번호</label>
-                     <div class="postcode-container"> 
+                     <label for="plant-postcode">우편번호</label> 
+                     <div class="postcode-container">
 	                     <input type="text" id="plant-postcode" name="zipCode" required><br><br>
 	                     <input type="button" onclick="findPost()" value="우편번호 찾기"><br>
                      </div>
@@ -232,7 +235,6 @@
          </section>
       </div>
    </main>
-   <script src="assets/js/loginon.js"></script>
    <script src="assets/js/dataTable.js"></script>
    <script src="assets/js/popup_2.js"></script>
    <jsp:include page="footer.jsp" />
